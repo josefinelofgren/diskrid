@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  color: #333;
 }
 
 *,
@@ -17,4 +18,80 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+li {
+  list-style: none;
+}
+
+
+/* BUTTONS */ 
+
+.btn {
+  width: 300px !important;
+  padding: 15px !important;
+}
+
+.btn-black {
+  background-color: #333 !important;
+  border-color: #333 !important;
+  color: #fff !important;
+}
+
+.btn-black:hover {
+  background-color: rgb(22, 22, 22) !important;
+  border-color: rgb(22, 22, 22) !important;
+  color: #fff !important;
+}
+
+.btn-white {
+  background-color: #fff !important;
+  border-color: #fff !important;
+  color: #333 !important;
+}
+
+.btn-white:hover {
+  background-color: rgb(235, 232, 232) !important;
+  border-color: rgb(235, 232, 232) !important;
+}
+
+/* NAVBAR */ 
+
+.navbar {
+  text-transform: uppercase;
+}
+
+.subnav {
+  display: none !important;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-top: 1px solid rgb(196, 196, 196);
+  border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.subnav-grid {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  padding: 10px 0;
+}
+
+/* HEADER */ 
+
+.header {
+  height: Calc(90vh - 60px);
+  background-color: grey; 
+  background-image: url('../images/disktrasa2.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+}
+
+.header-content {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 30vh;
 }

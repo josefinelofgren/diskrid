@@ -8,6 +8,7 @@ import App from './App';
 
 // import stylesheets 
 import './stylesheets/index.css';
+import './stylesheets/desktop.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
