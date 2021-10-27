@@ -13,6 +13,6 @@ Visit: []()
 - run the project by using "npm start" in terminal
 
 ### Packages
-- React-router-dom
-- React-bootstrap
-- React-icons
+- react-router-dom
+- react-bootstrap
+- react-icons
