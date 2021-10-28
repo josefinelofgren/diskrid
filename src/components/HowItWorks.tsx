@@ -25,7 +25,9 @@ function HowItWorks() {
                     <p className="steps-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id felis scelerisque.</p>
                 </article>
             </section>
-            <Button className='btn-black steps-btn'>Kom igång</Button>
+            <section>
+                <Button className='btn-black steps-btn'>Kom igång</Button>
+            </section>
           </div>
       </Container>
     </div>
