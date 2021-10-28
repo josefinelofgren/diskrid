@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -131,14 +132,15 @@ h3 {
 /* HOW IT WORKS */
 
 .how-it-works {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .how-it-works-content {
   width: 100%;
+  min-height: 100%;
+  padding: 15vh 0;
   text-align: center;
   position: relative;
-  top: 15vh;
   justify-items: center;
 }
 
@@ -171,4 +173,59 @@ h3 {
   color: #FFF;
   flex-shrink: 0;
   font-weight: bolder;
+}
+
+/* MISSION */
+
+.mission {
+  height: 100vh;
+}
+
+.mission-content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mission-left {
+  width: 100vw;
+  height: 70vh;
+  background-color: #B4A391;
+  text-align: left;
+  padding: 14%;
+}
+
+.mission-right {
+  width: 100vw;
+  height: 30vh;
+  background-color: #333;
+  background-image: url('../images/disktrasa1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (min-width: 780px) {
+
+  .mission-left {
+    width: 50vw;
+    height: 100vh;
+  } 
+
+  .mission-right {
+    width: 50vw;
+    height: 100vh;
+  }
+
+}
+
+
+.mission-title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.mission-text {
+  color: #fff;
 }
