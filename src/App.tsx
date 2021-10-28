@@ -1,5 +1,5 @@
 // import libaries
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
@@ -13,14 +13,16 @@ import HowItWorks from './components/HowItWorks';
 import Mission from './components/Mission';
 
 function App() {
+
+  const[user, setUser] = useState(false);
+
   return (
     <div className='app'>
-      <Nav /> 
+      <Router>
+      <Nav user={user}/> 
       <Header /> 
       <HowItWorks />
       <Mission />
-      <Router>
-
       </Router>
     </div>
   );
