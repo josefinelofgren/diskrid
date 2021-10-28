@@ -138,5 +138,36 @@ h3 {
   width: 100%;
   text-align: center;
   position: relative;
-  top: 30vh;
+  top: 20vh;
+  justify-items: center;
+}
+
+.how-it-works-steps {
+  margin-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.steps-title {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.step {
+  width: 300px;
+  margin: 30px;
+}
+
+.circle {
+  background-color: #333;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  margin: auto;
+  border-radius: 50px;
+  color: #FFF;
+  flex-shrink: 0;
+  font-weight: bolder;
 }
