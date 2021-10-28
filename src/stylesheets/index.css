@@ -138,12 +138,13 @@ h3 {
   width: 100%;
   text-align: center;
   position: relative;
-  top: 20vh;
+  top: 15vh;
   justify-items: center;
 }
 
 .how-it-works-steps {
-  margin-top: 80px;
+  margin-top: 70px;
+  margin-bottom: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
