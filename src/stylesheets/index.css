@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -156,14 +157,47 @@ input {
 /* HOW IT WORKS */
 
 .how-it-works {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .how-it-works-content {
   width: 100%;
+  min-height: 100%;
+  padding: 15vh 0;
   text-align: center;
   position: relative;
   top: 30vh;
+}
+
+.how-it-works-steps {
+  margin-top: 70px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.steps-title {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.step {
+  width: 300px;
+  margin: 30px;
+}
+
+.circle {
+  background-color: #333;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  margin: auto;
+  border-radius: 50px;
+  color: #FFF;
+  flex-shrink: 0;
+  font-weight: bolder;
 }
 
 
@@ -248,7 +282,6 @@ input {
   cursor: pointer;
 }
 
-/* The container */
 .checkbox-container {
   display: block;
   position: relative;
@@ -269,7 +302,6 @@ input {
   text-transform: none;
 }
 
-/* Hide the browser's default checkbox */
 .checkbox-container input {
   position: absolute;
   opacity: 0;
@@ -278,7 +310,6 @@ input {
   width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 0;
@@ -290,29 +321,24 @@ input {
   border-radius: 2px;
 }
 
-/* On mouse-over, add a grey background color */
 .checkbox-container:hover input ~ .checkmark {
   background-color: #fff;
 }
 
-/* When the checkbox is checked, add a blue background */
 .checkbox-container input:checked ~ .checkmark {
   background-color: #fff;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
 .checkbox-container input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .checkbox-container .checkmark:after {
   left: 8px;
   top: -1px;
@@ -323,4 +349,62 @@ input {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+  justify-items: center;
+}
+
+
+
+/* MISSION */
+
+.mission {
+  height: 100vh;
+}
+
+.mission-content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mission-left {
+  width: 100vw;
+  height: 70vh;
+  background-color: #B4A391;
+  text-align: left;
+  padding: 14%;
+}
+
+.mission-right {
+  width: 100vw;
+  height: 30vh;
+  background-color: #333;
+  background-image: url('../images/disktrasa1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (min-width: 780px) {
+
+  .mission-left {
+    width: 50vw;
+    height: 100vh;
+  } 
+
+  .mission-right {
+    width: 50vw;
+    height: 100vh;
+  }
+
+}
+
+
+.mission-title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.mission-text {
+  color: #fff;
 }

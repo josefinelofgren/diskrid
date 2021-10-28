@@ -10,6 +10,7 @@ import {
 import Nav from './components/Nav';
 import Header from './components/Header';
 import HowItWorks from './components/HowItWorks';
+import Mission from './components/Mission';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
       <Nav user={user}/> 
       <Header /> 
       <HowItWorks />
-
+      <Mission />
       </Router>
     </div>
   );
