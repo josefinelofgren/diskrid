@@ -1,10 +1,23 @@
+// import libaries
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar'
+import { 
+  BrowserRouter as Router, 
+  Switch,
+  Route
+ } from 'react-router-dom';
+
+// import components
+import Nav from './components/Nav';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className='app'>
-     <h1>Diskrid</h1>
+      <Nav /> 
+      <Header /> 
+      <Router>
+
+      </Router>
     </div>
   );
 }
