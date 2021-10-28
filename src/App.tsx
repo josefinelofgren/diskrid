@@ -11,6 +11,7 @@ import Nav from './components/Nav';
 import Header from './components/Header';
 import HowItWorks from './components/HowItWorks';
 import Mission from './components/Mission';
+import AboutUs from './components/AboutUs';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Header /> 
       <HowItWorks />
       <Mission />
+      <AboutUs />
       </Router>
     </div>
   );

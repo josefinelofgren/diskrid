@@ -166,7 +166,6 @@ input {
   padding: 15vh 0;
   text-align: center;
   position: relative;
-  top: 30vh;
 }
 
 .how-it-works-steps {
@@ -407,4 +406,17 @@ input {
 
 .mission-text {
   color: #fff;
+}
+
+/* ABOUT US */ 
+
+.about-us {
+  height: auto;
+  padding: 15vh 0;
+}
+
+.about-us-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
