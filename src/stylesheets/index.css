@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  height: auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -235,7 +236,7 @@ input {
   z-index:2;
 }
 
-.user-dropdown .close-btn {
+.close-btn {
   position: absolute;
   right: 30px;
   top: 30px;
@@ -244,8 +245,8 @@ input {
   height: 20px;
 }
 
-.user-dropdown .close-btn::before,
-.user-dropdown .close-btn::after {
+.close-btn::before,
+.close-btn::after {
   content: '';
   position: absolute;
   width: 20px;
@@ -256,12 +257,12 @@ input {
   border-radius: 5px;
 }
 
-.user-dropdown .close-btn::before {
+.close-btn::before {
   transform: translateY(-7px);
   transform: rotate(-135deg);
 }
 
-.user-dropdown .close-btn::after {
+.close-btn::after {
   transform: translateY(7.5px);
   transform: rotate(135deg);
 }
@@ -477,4 +478,87 @@ input {
 
 .copyright-link:hover {
   border-bottom: 1px solid grey;
+}
+
+
+/* SHOPPING CART */ 
+
+.shopping-cart {
+  position: fixed;
+  z-index: 9;
+  background-color: #fff;
+  -webkit-transition: width 0.3s, height 0.3s;
+  transition: width 0.3s, height 0.3s;
+  width: 0;
+  height: 100vh;
+  font-size: 1.5em;
+  top: 0px;
+  right: 0px;
+  -webkit-transform-origin: 100% 0%;
+  transform-origin: 100% 0%;
+}
+
+.shopping-cart.is-active{
+  width: 380px;
+  height: 100vh;
+  -webkit-animation: anim-jelly 0.8s linear forwards;
+  animation: anim-jelly 0.8s linear forwards;
+  box-shadow:0 0 0 10000px rgba(0,0,0,.30);
+  overflow: scroll;
+}
+
+.shopping-cart .close-btn {
+  opacity: 0;
+}
+
+.shopping-cart.is-active .close-btn {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s 0.5s;
+  transition: opacity 0.5s 0.5s;
+}
+
+.shopping-cart-content {
+  padding: 30px;
+  opacity: 0;
+}
+
+.shopping-cart-content.is-active {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s 0.5s;
+  transition: opacity 0.5s 0.5s;
+}
+
+.shopping-cart-content .grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-bottom: 20px;
+}
+
+.shopping-cart-content h5 {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: rgb(44, 44, 44);
+}
+
+.shopping-cart-content h4 {
+  font-size: 16px;
+}
+
+.shopping-cart-content .grid .right{
+  text-align: right;
+}
+
+.order {
+  border-top: 1px solid rgb(175, 175, 175);
+  border-bottom: 1px solid rgb(175, 175, 175);
+  padding: 100px 0;
+  height: auto;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.empty-bag-text {
+  position: relative;
+  font-size: 10px;
+  color: grey;
 }
