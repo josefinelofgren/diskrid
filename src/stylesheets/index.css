@@ -98,7 +98,7 @@ li {
 /* HEADER */ 
 
 .header {
-  height: Calc(90vh - 60px);
+  height: Calc(100vh - 60px);
   background-color: grey; 
   background-image: url('../images/disktrasa2.jpg');
   background-attachment: fixed;
@@ -119,4 +119,17 @@ li {
   color: #fff;
   margin-bottom: 40px;
   font-size: 50px;
+}
+
+/* HOW IT WORKS */
+
+.how-it-works {
+  height: 100vh;
+}
+
+.how-it-works-content {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 30vh;
 }
