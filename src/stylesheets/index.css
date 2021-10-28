@@ -24,6 +24,13 @@ li {
   list-style: none;
 }
 
+/* TEXT STYLES */
+
+h3 {
+  text-transform: uppercase;
+  font-size: 15px !important;
+  color: rgb(77, 76, 76);
+}
 
 /* BUTTONS */ 
 

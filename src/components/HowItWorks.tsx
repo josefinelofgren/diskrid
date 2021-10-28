@@ -6,6 +6,7 @@ function HowItWorks() {
     <div className='how-it-works'>
       <Container fluid>
           <div className='how-it-works-content'>
+              <h3>Så funkar det</h3>
             <h2>Hur funkar DISKRID?</h2>
 
               {/* <h1 className='title'>Här ska det vara en slogan</h1>
