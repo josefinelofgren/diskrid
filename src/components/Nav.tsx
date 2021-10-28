@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Row, Col, Container } from 'react-bootstrap';
 import { FiShoppingBag, FiUser } from "react-icons/fi";
+import LogInDropDown from './user/LoginDropDown';
+import SignUpDropDown from './user/SignUpDropDown';
 
-function Nav() {
+interface Props {
+  user: any
+}
+
+function Nav(props: Props) {
+
+  const { user } = props;
+
+  // state and toggle for user dropdown
+  const[userDropDown, setUserDropDown] = useState(false);
+  const toggleUserDropDown = () => {
+    setUserDropDown(!userDropDown);
+    setLogInContent(true);
+    setSignUpContent(false);
+  }
+
+  //state and toggle for login and signup content in user dropdown
+  const[logInContent, setLogInContent] = useState(false);
+  const toggleLogInContent = () => {
+    setLogInContent(true);
+    setSignUpContent(false);
+  }
+
+  const[signUpContent, setSignUpContent] = useState(false);
+  const toggleSignUpContent = () => {
+    setSignUpContent(true);
+    setLogInContent(false)
+  }
 
   return (
     <>
@@ -15,8 +44,13 @@ function Nav() {
           Diskrid
         </Navbar.Brand>
         <div className='navbar-icons'>
-          <span><FiUser></FiUser></span>
-          <span><FiShoppingBag></FiShoppingBag></span>
+          <span>
+            <FiUser
+            onClick={toggleUserDropDown}/>
+          </span>
+          <span>
+            <FiShoppingBag/>
+          </span>
         </div>
       </Container>
     </Navbar>
@@ -30,6 +64,15 @@ function Nav() {
             <li><a href="">Om oss</a></li>
         </div>
       </Container>
+    </div>
+    <div className={userDropDown ? 'user-dropdown is-active' : 'user-dropdown'}>
+      <div className='close-btn' onClick={toggleUserDropDown}/>
+        {logInContent && (
+          <LogInDropDown toggleSignUpContent={toggleSignUpContent}/> 
+        )}
+        {signUpContent && (
+          <SignUpDropDown toggleLogInContent={toggleLogInContent}/> 
+        )}
     </div>
     </>
   );
