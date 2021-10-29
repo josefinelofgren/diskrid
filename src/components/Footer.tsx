@@ -38,11 +38,11 @@ function Footer() {
       <Container fluid>
         <Row>
           <Col md='6'>
-              <p>Copyright 2021 ® Diskrid AB - Org. XXXXXX-YYYY - All rights reserved. {' '}</p>
-          </Col>
-          <Col md='6'>
              <span className='fw-bold copyright-link'>VÅRA ALLMÄNNA VILLKOR</span>{' '}
              <span className='fw-bold copyright-link'>INTEGRITETSPOLICY</span>
+          </Col>
+          <Col md='6'>
+              <p>Copyright 2021 ® Diskrid AB - Org. XXXXXX-YYYY - All rights reserved. {' '}</p>
           </Col>
         </Row>
       </Container>
