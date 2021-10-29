@@ -88,6 +88,18 @@ input {
   border-color: rgb(235, 232, 232) !important;
 }
 
+.btn-transparent {
+  background-color: transparent !important;
+  color: #333 !important;
+  border-color: #333 !important;
+}
+
+.btn-transparent:hover {
+  background-color: rgb(22, 22, 22) !important;
+  color: #fff !important;
+  border-color: rgb(22, 22, 22) !important;
+}
+
 /* NAVBAR */ 
 
 .navbar {
@@ -561,4 +573,56 @@ input {
   position: relative;
   font-size: 10px;
   color: grey;
+}
+
+/* SUBSCRIPTION INFO */ 
+.subscription-info {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  height: auto;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.subscription-status {
+  padding: 5px 20px;
+  background-color: rgb(196, 110, 110);
+  width: max-content;
+  border-radius: 20px;
+  color: rgb(66, 37, 37);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.subscription-status.is-active {
+  background-color: rgb(126, 190, 126);
+  color: rgb(54, 83, 54);
+}
+
+.subscription-info h1 {
+  font-size: 40px;
+}
+
+.subscription-info p {
+  color: rgb(77, 77, 77);
+  font-size: 12px;
+}
+
+/* NEXT DELIVERY INFO */ 
+
+.next-delivery-info {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  height: auto;
+}
+
+.next-delivery-info .grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.next-delivery-info .grid .right {
+  text-align: right;
 }

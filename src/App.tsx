@@ -13,20 +13,35 @@ import HowItWorks from './components/HowItWorks';
 import Mission from './components/Mission';
 import AboutUs from './components/AboutUs';
 import Footer from './components/Footer';
+import SubscriptionInfo from './components/user/account/SubscriptionInfo';
+import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
+import { FaLaptopHouse } from 'react-icons/fa';
 
 function App() {
 
   const[user, setUser] = useState(false);
+  const[subscriptionStatus, setSubscriptionStatus] = useState(false);
 
   return (
     <div className='app'>
       <Router>
-      <Nav user={user}/> 
-      <Header /> 
-      <HowItWorks />
-      <Mission />
-      <AboutUs />
-      <Footer /> 
+          <Nav user={user}/> 
+          <Switch>
+              <Route exact path='/'>
+                  <Header /> 
+                  <HowItWorks />
+                  <Mission />
+                  <AboutUs />
+              </Route>
+              <Route
+                  path='/account/subscription'>
+                  <div className='subscription'>
+                      <SubscriptionInfo subscriptionStatus={subscriptionStatus}/> 
+                      <NextDeliveryInfo subscriptionStatus={subscriptionStatus}/> 
+                  </div>
+              </Route>
+          </Switch>
+          <Footer /> 
       </Router>
     </div>
   );
