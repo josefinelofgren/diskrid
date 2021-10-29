@@ -9,7 +9,7 @@ Visit: []()
 
 ## Install project 
 
-- run "npm i" in terminal
+- run "npm i" in terminal to install required packages.
 - run the project by using "npm start" in terminal
 
 ### Packages
