@@ -166,7 +166,6 @@ input {
   padding: 15vh 0;
   text-align: center;
   position: relative;
-  top: 30vh;
 }
 
 .how-it-works-steps {
@@ -407,4 +406,75 @@ input {
 
 .mission-text {
   color: #fff;
+}
+
+/* ABOUT US */ 
+
+.about-us {
+  height: auto;
+  padding: 15vh 0;
+}
+
+.about-us-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* FOOTER */ 
+
+.footer {
+  height: auto;
+  background-color: rgb(27, 27, 27);
+  text-align: center;
+  padding: 50px 0;
+  color: #fff;
+}
+
+.footer h1 {
+  text-transform: uppercase;
+}
+
+.footer-content{
+  padding: 20px 0;
+}
+
+.footer-content .subtext{
+  font-size: 11px;
+}
+
+.footer-icons span {
+  margin: 5px;
+  font-size: 30px;
+}
+
+.footer li {
+  display: inline-block;
+  margin: 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+}
+
+.footer li:hover {
+  border-bottom: 1px solid #fff;
+}
+
+.copyright {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 12px;
+  color: grey;
+}
+
+.copyright-link {
+  margin-left: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+
+.copyright-link:hover {
+  border-bottom: 1px solid grey;
 }
