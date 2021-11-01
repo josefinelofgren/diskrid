@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration

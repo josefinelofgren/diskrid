@@ -22,6 +22,10 @@ code {
     monospace;
 }
 
+ul {
+  padding: 0 !important;
+}
+
 li {
   list-style: none;
 }
@@ -58,7 +62,8 @@ input {
 /* BUTTONS */ 
 
 .btn {
-  width: 300px !important;
+  width: 100% !important;
+  max-width: 300px !important;
   padding: 15px !important;
   text-transform: uppercase;
   font-size: 12px !important;
@@ -577,8 +582,8 @@ input {
 
 /* SUBSCRIPTION INFO */ 
 .subscription-info {
-  width: 90%;
-  max-width: 500px;
+  width: 100%;
+  max-width: 450px;
   margin: 0 auto;
   height: auto;
   padding: 50px 0;
@@ -612,10 +617,11 @@ input {
 /* NEXT DELIVERY INFO */ 
 
 .next-delivery-info {
-  width: 90%;
-  max-width: 500px;
+  width: 100%;
+  max-width: 450px;
   margin: 0 auto;
   height: auto;
+  padding-bottom: 50px;
 }
 
 .next-delivery-info .grid {
@@ -625,4 +631,20 @@ input {
 
 .next-delivery-info .grid .right {
   text-align: right;
+}
+
+.next-delivery-info .order {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 40px 0;
+  margin-top: 20px;
+}
+
+.order img {
+  width: 100%;
+}
+
+.order-info {
+  position: relative;
+  top: 10px;
 }

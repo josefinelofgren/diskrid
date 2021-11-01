@@ -1,46 +1,27 @@
 import React from 'react';
-import { Container,Button } from 'react-bootstrap';
-
-interface Props {
-    subscriptionStatus: boolean; 
-  }
+import { Container } from 'react-bootstrap';
   
-  
-function NextDeliveryInfo(props: Props) {
-  
-  const { subscriptionStatus } = props;
+function NextDeliveryInfo() {
 
   return (
     <div className='next-delivery-info'>
         <Container fluid> 
-        {subscriptionStatus && (
-            <>
+            <h3 className='fw-bold'>Din nästa leverans:</h3>
             <section className='order'>
-                <p className='empty-bag-text'>Din varukorg är tom</p>
+                <figure>
+                    <img src={require('../../../images/disktrasa2.jpg').default} alt='Ordered item'/>
+                </figure>
+                <div className='order-info grid'>
+                    <p className='fw-bold'>4x Disktrasa svart</p>
+                    <h5 className='fw-bold right'>119 SEK</h5>
+                </div>
             </section>
             <div className='grid'>
                 <h5 className='fw-bold'>Leverans</h5>
                 <h5 className='fw-bold right'>Gratis</h5>
                 <h4 className='fw-bold'>Totalt idag</h4>
-                <h4 className='fw-bold right'>0 SEK</h4>
+                <h4 className='fw-bold right'>119 SEK</h4>
             </div>
-            <Button className='btn-black'>Kom igång</Button>
-            </>
-        )}
-        {!subscriptionStatus && (
-            <>
-            <section className='order'>
-                <p className='empty-bag-text'>Din varukorg är tom</p>
-            </section>
-            <div className='grid'>
-                <h5 className='fw-bold'>Leverans</h5>
-                <h5 className='fw-bold right'>Gratis</h5>
-                <h4 className='fw-bold'>Totalt idag</h4>
-                <h4 className='fw-bold right'>0 SEK</h4>
-            </div>
-            <Button className='btn-black'>Kom igång</Button>
-            </>
-        )}
         </Container>
     </div>
   );

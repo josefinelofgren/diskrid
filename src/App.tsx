@@ -15,12 +15,11 @@ import AboutUs from './components/AboutUs';
 import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
-import { FaLaptopHouse } from 'react-icons/fa';
 
 function App() {
 
   const[user, setUser] = useState(false);
-  const[subscriptionStatus, setSubscriptionStatus] = useState(false);
+  const[subscriptionStatus, setSubscriptionStatus] = useState(true);
 
   return (
     <div className='app'>
@@ -37,7 +36,9 @@ function App() {
                   path='/account/subscription'>
                   <div className='subscription'>
                       <SubscriptionInfo subscriptionStatus={subscriptionStatus}/> 
-                      <NextDeliveryInfo subscriptionStatus={subscriptionStatus}/> 
+                      {subscriptionStatus && (
+                        <NextDeliveryInfo /> 
+                      )}
                   </div>
               </Route>
           </Switch>
