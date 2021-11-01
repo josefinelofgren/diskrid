@@ -14,6 +14,7 @@ import Mission from './components/Mission';
 import AboutUs from './components/AboutUs';
 import PickQuantity from './components/PickQuantity';
 import Footer from './components/Footer';
+import PickColor from './components/PickColor';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <PickQuantity quantity={quantity} />
       <AboutUs />
       <Footer /> 
+      <PickColor/>
       </Router>
     </div>
   );
