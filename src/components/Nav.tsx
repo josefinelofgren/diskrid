@@ -62,8 +62,18 @@ function Nav(props: Props) {
     <div className='subnav'>
       <Container fluid>
         <div className='subnav-grid'>
+        {user && (
+          <>
+          <li><a href="">Min prenumeration</a></li>
+          <li><a href="">Konto</a></li>
+          </>
+          )}
+          {!user && (
+            <>
             <li><a href="">Kom igång</a></li>
             <li><a href="">Så funkar det</a></li>
+            </>
+          )}
             <li><a href="">Produkter</a></li>
             <li><a href="">FAQ & hjälp</a></li>
             <li><a href="">Om oss</a></li>
