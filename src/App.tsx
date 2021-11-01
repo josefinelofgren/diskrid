@@ -12,6 +12,7 @@ import Header from './components/Header';
 import HowItWorks from './components/HowItWorks';
 import Mission from './components/Mission';
 import AboutUs from './components/AboutUs';
+import PickQuantity from './components/PickQuantity';
 import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
@@ -20,6 +21,7 @@ function App() {
 
   const[user, setUser] = useState(false);
   const[subscriptionStatus, setSubscriptionStatus] = useState(true);
+  const[quantity, setQuantity] = useState(0);
 
   return (
     <div className='app'>
@@ -30,6 +32,7 @@ function App() {
                   <Header /> 
                   <HowItWorks />
                   <Mission />
+                  <PickQuantity quantity={quantity} />
                   <AboutUs />
               </Route>
               <Route
