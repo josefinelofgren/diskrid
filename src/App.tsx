@@ -11,11 +11,13 @@ import Nav from './components/Nav';
 import Header from './components/Header';
 import HowItWorks from './components/HowItWorks';
 import Mission from './components/Mission';
+import PickColor from './components/PickColor';
 import AboutUs from './components/AboutUs';
 import PickQuantity from './components/PickQuantity';
 import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
+
 
 function App() {
 
@@ -32,6 +34,7 @@ function App() {
                   <Header /> 
                   <HowItWorks />
                   <Mission />
+                  <PickColor/>
                   <PickQuantity quantity={quantity} />
                   <AboutUs />
               </Route>
