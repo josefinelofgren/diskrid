@@ -3,6 +3,7 @@ import { Navbar, Row, Col, Container } from 'react-bootstrap';
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import LogInDropDown from './user/LoginDropDown';
 import SignUpDropDown from './user/SignUpDropDown';
+import ShoppingCart from './user/ShoppingCart';
 
 interface Props {
   user: any
@@ -19,6 +20,9 @@ function Nav(props: Props) {
     setLogInContent(true);
     setSignUpContent(false);
   }
+
+  // state and toggle for shopping cart 
+  const[shoppingCart, setShoppingCart] = useState(false);
 
   //state and toggle for login and signup content in user dropdown
   const[logInContent, setLogInContent] = useState(false);
@@ -49,7 +53,8 @@ function Nav(props: Props) {
             onClick={toggleUserDropDown}/>
           </span>
           <span>
-            <FiShoppingBag/>
+            <FiShoppingBag
+            onClick={() => setShoppingCart(!shoppingCart)}/>
           </span>
         </div>
       </Container>
@@ -57,8 +62,18 @@ function Nav(props: Props) {
     <div className='subnav'>
       <Container fluid>
         <div className='subnav-grid'>
+        {user && (
+          <>
+          <li><a href="">Min prenumeration</a></li>
+          <li><a href="">Konto</a></li>
+          </>
+          )}
+          {!user && (
+            <>
             <li><a href="">Kom igång</a></li>
             <li><a href="">Så funkar det</a></li>
+            </>
+          )}
             <li><a href="">Produkter</a></li>
             <li><a href="">FAQ & hjälp</a></li>
             <li><a href="">Om oss</a></li>
@@ -73,6 +88,10 @@ function Nav(props: Props) {
         {signUpContent && (
           <SignUpDropDown toggleLogInContent={toggleLogInContent}/> 
         )}
+    </div>
+    <div className={shoppingCart ? 'shopping-cart is-active' : 'shopping-cart'}>
+        <div className='close-btn' onClick={() => setShoppingCart(!shoppingCart)}/>
+            <ShoppingCart shoppingCart={shoppingCart}/> 
     </div>
     </>
   );
