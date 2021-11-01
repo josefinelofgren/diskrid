@@ -1,11 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import StepIndicator from './StepIndicator';
 import { Container } from 'react-bootstrap';
+
+interface IColorArray {
+    source: string,
+    color: string
+}
+
 const PickColor = () => {
 
-    //This is a placeholder. Picture array will be fetched from db.
-    const pictureArray: string[] = ["./img/disktrasa_pink.png", "./img/disktrasa_beige.png", "./img/disktrasa_grey.png", "./img/disktrasa_white.png", "./img/disktrasa_black.png"]
     
+    //This is a placeholder. Picture array will be fetched from db.
+    const pictureArray: IColorArray[] = [
+        {
+            source: "./img/disktrasa_pink.png",
+            color: "pink"
+        },
+        {
+            source: "./img/disktrasa_beige.png",
+            color: "beige"
+        },
+        {
+            source: "./img/disktrasa_grey.png",
+            color: "grey"
+        },
+        {
+            source: "./img/disktrasa_white.png",
+            color: "white"
+        },
+        {
+            source: "./img/disktrasa_black.png",
+            color: "black"
+        }
+    ]
+    
+    const [pickedColor, setPickedColor] = useState<string>("");
+
+
     return (
         <Container fluid>
             <div className="pick-color">
@@ -17,18 +48,13 @@ const PickColor = () => {
                         <p className="rag-attributes"><span>Miljövänlig</span><span>Tvättbar</span><span>Hållbar</span></p>
                         <p className="text-secondary"><strong>Välj ett färgtema som passar din vardag</strong></p>
                     </article>
-                    <div className="color-choice-wrapper">{pictureArray.map((color, index) => {
+                    <div className="color-choice-wrapper">{pictureArray.map((picture, index) => {
                         return(
-                            <img className={"border border-dark rounded-circle color-choice"} key={color} src={color}></img>
+                            <img className={`border border-dark rounded-circle color-choice ${pickedColor == picture.color ? "selectedColor" : ""}`} key={picture.source} src={picture.source} onClick={() => setPickedColor(picture.color)}></img>
                         )
                     })}</div>
                     <button className="btn-black btn">nästa steg</button>
 
-                    {/* <div className="color-choice color-one"></div>
-                    <div className="color-choice color-two"></div>
-                    <div className="color-choice color-three"></div>
-                    <div className="color-choice color-four"></div>
-                    <div className="color-choice color-five"></div> */}
                 </section>
             </div>
         </Container>

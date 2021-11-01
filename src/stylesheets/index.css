@@ -432,8 +432,11 @@ input {
   gap: 1em;
   justify-content: center;
 }
+
 .color-choice{
   width: 10%;
+  cursor: pointer;
+  position: relative;
 }
 .pick-color-text{
   width: 100%;
@@ -441,7 +444,6 @@ input {
   flex-direction: column;
   align-items: center;
 }
-
 /* STEP INDICATOR */
 .step-indicator{
   cursor: pointer;

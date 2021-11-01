@@ -1,5 +1,5 @@
 import React from 'react';
-import { getTextOfJSDocComment } from 'typescript';
+
 
 interface IProps {
     selectedPage: string
@@ -12,7 +12,7 @@ function StepIndicator(props: IProps) {
         <div className="step-indicator">
             <p>{subscriptionPages.map(item => {
                 return(
-                    <span className={props.selectedPage === item ? "currentStep" : "non-active-step"}>{item} <span>{item === "Checka ut" ? null : "> "}</span></span>
+                    <span className={props.selectedPage === item ? "currentStep" : "non-active-step"} key={item}>{item} <span>{item === "Checka ut" ? null : "> "}</span></span>
                 )
             })}</p>
         </div>
