@@ -536,6 +536,45 @@ input {
   background-color: #000 !important;
 }
 
+/* PICK QUANTITY */
+
+.delivery {
+  min-height: 100vh;
+}
+
+.delivery-title {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.delivery-content {
+  width: 100%;
+  min-height: 100%;
+  padding: 15vh 0;
+  text-align: center;
+  position: relative;
+}
+
+.delivery-boxes {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.delivery-box {
+  border: 2px solid #D7CECA;
+  text-align: left;
+  max-width: 450px;
+  padding: 12px 15px 0px 15px;
+  margin: auto;
+  margin-bottom: 15px;
+  border-radius: 25px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+
+
 /* FOOTER */ 
 
 .footer {
