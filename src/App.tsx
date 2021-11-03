@@ -26,7 +26,7 @@ function App() {
   const[user, setUser] = useState(false);
   const[subscriptionStatus, setSubscriptionStatus] = useState(true);
   const[quantity, setQuantity] = useState(0);
-  const[delivery, setDelivery] = useState(0);
+  const[delivery, setDelivery] = useState("");
 
   return (
     <div className='app'>

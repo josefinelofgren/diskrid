@@ -7,12 +7,22 @@ interface Props {
 
 const PickDelivery = (props: Props) => {
 
-    let [delivery, setDelivery] = useState(0);
+    let [delivery, setDelivery] = useState("");
 
     const handleClick = (e:any) => {
-        console.log("Test")
-        console.log(e.target.id)
 
+        let selectedDelivery = ""!;
+
+        if (e.target.id === '01') {
+            selectedDelivery = "Varje vecka";
+        } else if (e.target.id === '02') {
+            selectedDelivery = "Varanann vecka";
+        } else if (e.target.id === '03') {
+            selectedDelivery = "Varannan månad";
+        }
+
+        console.log("Selected delivery: " + selectedDelivery);
+        setDelivery(selectedDelivery);
     }
 
     return (

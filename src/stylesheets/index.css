@@ -553,7 +553,6 @@ input {
   min-height: 100%;
   padding: 15vh 0;
   text-align: center;
-  position: relative;
 }
 
 .delivery-boxes {
@@ -572,7 +571,6 @@ input {
   flex-shrink: 0;
   cursor: pointer;
 }
-
 
 
 /* FOOTER */ 
