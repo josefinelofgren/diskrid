@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import PickColor from './components/PickColor';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
+import Payment from './components/Payment';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
                   <Mission />
                   <PickQuantity quantity={quantity} />
                   <PickColor/>
+                  <Payment/>
                   <AboutUs />
               </Route>
               <Route
