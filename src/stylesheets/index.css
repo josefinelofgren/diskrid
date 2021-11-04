@@ -542,12 +542,6 @@ input {
   min-height: 100vh;
 }
 
-.delivery-title {
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
 .delivery-content {
   width: 100%;
   min-height: 100%;
@@ -561,17 +555,20 @@ input {
 }
 
 .delivery-box {
-  border: 2px solid #D7CECA;
+  border: 2px solid #D7CECA !important;
   text-align: left;
   max-width: 450px;
   padding: 12px 15px 0px 15px;
   margin: auto;
   margin-bottom: 15px;
-  border-radius: 25px;
+  border-radius: 25px !important;
   flex-shrink: 0;
   cursor: pointer;
 }
 
+.card-title {
+  text-transform: uppercase;
+}
 
 /* FOOTER */ 
 

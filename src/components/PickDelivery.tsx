@@ -1,58 +1,77 @@
-import React, {useState} from 'react';
-import { Button, Container } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button, Container, Card } from "react-bootstrap";
 
 interface Props {
-    delivery: any;
+  delivery: any;
 }
 
 const PickDelivery = (props: Props) => {
+  let [delivery, setDelivery] = useState("");
 
-    let [delivery, setDelivery] = useState("");
+  const handleClick = (e: any) => {
+    let selectedDelivery = ""!;
 
-    const handleClick = (e:any) => {
-
-        let selectedDelivery = ""!;
-
-        if (e.target.id === '01') {
-            selectedDelivery = "Varje vecka";
-        } else if (e.target.id === '02') {
-            selectedDelivery = "Varanann vecka";
-        } else if (e.target.id === '03') {
-            selectedDelivery = "Varannan månad";
-        }
-
-        console.log("Selected delivery: " + selectedDelivery);
-        setDelivery(selectedDelivery);
+    if (e.target.id === "01") {
+      selectedDelivery = "Varje vecka";
+    } else if (e.target.id === "02") {
+      selectedDelivery = "Varanann vecka";
+    } else if (e.target.id === "03") {
+      selectedDelivery = "Varannan månad";
     }
 
-    return (
-        <Container fluid>
-            <div className="pick-delivery">
-                <section className="delivery-content">
-                    <h3>Välj leverans</h3>
-                    <h2>Hur ofta vill du ha din leverans?</h2>
-                    <section className="delivery-boxes">
-                        <div className="delivery-box" id="01" onClick={e => handleClick(e)}>
-                            <p className="delivery-title">Varje vecka</p>
-                            <p>Jag använder min disktrasa flitigt och torkar mycket mjölkspill.</p>
-                        </div>
+    console.log("Selected delivery: " + selectedDelivery);
+    setDelivery(selectedDelivery);
+  };
 
-                        <div className="delivery-box" id="02" onClick={e => handleClick(e)}>
-                            <p className="delivery-title">Varanann vecka</p>
-                            <p>Jag använder min disktrasa måttligt och behöver en fräsch med jämna mellanrum.</p>
-                        </div>
+  return (
+    <Container fluid>
+      <div className="pick-delivery">
+        <section className="delivery-content">
+          <h3>Välj leverans</h3>
+          <h2>Hur ofta vill du ha din leverans?</h2>
+          <section className="delivery-boxes">
 
-                        <div className="delivery-box" id="03" onClick={e => handleClick(e)}>
-                            <p className="delivery-title">Varannan månad</p>
-                            <p>Jag använder min disktrasa sällan men behöver bli påmind att byta ut den ibland.</p>
-                        </div>
-                    </section>
+            <Card
+              className="delivery-box stretched-link"
+              id="01"
+              onClick={(e) => handleClick(e)}
+            >
+              <Card.Body>
+                <Card.Title className="card-title">Varje vecka</Card.Title>
+                <Card.Text>Jag använder min disktrasa flitigt och torkar mycket mjölkspill.</Card.Text>
+              </Card.Body>
+            </Card>
 
-                    <Button className='btn-black steps-btn' type="submit">Nästa steg</Button>
-                </section>
-            </div>
-        </Container>
-    );
+            <Card
+              className="delivery-box stretched-link"
+              id="02"
+              onClick={(e) => handleClick(e)}
+            >
+              <Card.Body>
+                <Card.Title className="card-title">Varannan vecka</Card.Title>
+                <Card.Text>Jag använder min disktrasa måttligt och behöver en fräsch med jämna mellanrum.</Card.Text>
+              </Card.Body>
+            </Card>
+
+            <Card
+              className="delivery-box stretched-link"
+              id="03"
+              onClick={(e) => handleClick(e)}
+            >
+              <Card.Body>
+                <Card.Title className="card-title">Varannan vecka</Card.Title>
+                <Card.Text>Jag använder min disktrasa sällan men behöver bli påmind att byta ut den ibland.</Card.Text>
+              </Card.Body>
+            </Card>
+          </section>
+
+          <Button className="btn-black steps-btn" type="submit">
+            Nästa steg
+          </Button>
+        </section>
+      </div>
+    </Container>
+  );
 };
 
 export default PickDelivery;
