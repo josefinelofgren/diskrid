@@ -12,6 +12,10 @@ interface Props {
 
 function Nav(props: Props) {
 
+  const style = {
+    'cursor': 'pointer'
+  }
+
   const { user } = props;
 
   // state and toggle for user dropdown
@@ -71,8 +75,9 @@ function Nav(props: Props) {
           {!user && (
             <>
             <Link 
+            style={style}
             activeClass="active"
-              to="pickcolor"
+              to="pickColor"
               spy={true}
               smooth={true}
               offset={70}
@@ -81,8 +86,9 @@ function Nav(props: Props) {
               Kom igång
              </Link>
              <Link 
+             style={style}
             activeClass="active"
-              to="howitworks"
+              to="howItWorks"
               spy={true}
               smooth={true}
               offset={70}
@@ -90,14 +96,17 @@ function Nav(props: Props) {
              >
               Så funkar det
              </Link>
+             <li><a href="">Produkter</a></li>
+            <li><a href="">FAQ & hjälp</a></li>
             </>
           )}
              <Link 
+             style={style}
             activeClass="active"
-              to=""
+              to="aboutUs"
               spy={true}
               smooth={true}
-              offset={70}
+              offset={-100}
               duration={500}
              >
               Om oss

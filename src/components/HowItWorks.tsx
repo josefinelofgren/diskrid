@@ -3,7 +3,7 @@ import { Button, Container } from 'react-bootstrap';
 
 function HowItWorks() {
   return (
-    <div className='how-it-works'>
+    <div className='how-it-works' id='howItWorks'>
       <Container fluid>
           <div className='how-it-works-content'>
               <h3>Så funkar det</h3>
