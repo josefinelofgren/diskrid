@@ -15,7 +15,6 @@ function Nav(props: Props) {
   const style = {
     'cursor': 'pointer'
   }
-
   const { user } = props;
 
   // state and toggle for user dropdown
@@ -37,6 +36,7 @@ function Nav(props: Props) {
   const[shoppingCart, setShoppingCart] = useState(false);
   const toggleShoppingCart = () => {
     setShoppingCart(!shoppingCart)
+    setLogInContent(false)
   }
 
   //state and toggle for login and signup content in user dropdown
