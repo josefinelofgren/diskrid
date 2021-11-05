@@ -27,11 +27,9 @@ function Nav(props: Props) {
     switch(userDropDown){
       case false:
         document.body.style.overflow = 'hidden'
-        console.log('du ska inte kunna scrolla');
         break
       case true: 
         document.body.style.overflow = 'scroll'
-        console.log('du ska kunna scrolla');
     }
    }
 
