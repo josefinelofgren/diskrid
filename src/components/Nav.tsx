@@ -24,10 +24,22 @@ function Nav(props: Props) {
     setUserDropDown(!userDropDown);
     setLogInContent(true);
     setSignUpContent(false);
-  }
+    switch(userDropDown){
+      case false:
+        document.body.style.overflow = 'hidden'
+        console.log('du ska inte kunna scrolla');
+        break
+      case true: 
+        document.body.style.overflow = 'scroll'
+        console.log('du ska kunna scrolla');
+    }
+   }
 
   // state and toggle for shopping cart 
   const[shoppingCart, setShoppingCart] = useState(false);
+  const toggleShoppingCart = () => {
+    setShoppingCart(!shoppingCart)
+  }
 
   //state and toggle for login and signup content in user dropdown
   const[logInContent, setLogInContent] = useState(false);
@@ -58,7 +70,7 @@ function Nav(props: Props) {
           </span>
           <span>
             <FiShoppingBag
-            onClick={() => setShoppingCart(!shoppingCart)}/>
+            onClick={toggleShoppingCart}/>
           </span>
         </div>
       </Container>

@@ -5,9 +5,22 @@ interface Props {
 }
 
 function ShoppingCart(props: Props) {
+  
+  
 
   const { shoppingCart } = props;
 
+  console.log(shoppingCart);
+
+  switch(shoppingCart){
+    case false:
+      document.body.style.overflow = 'scroll'
+      console.log('du ska  kunna scrolla');
+      break
+    case true: 
+      document.body.style.overflow = 'hidden'
+      console.log('du ska inte kunna scrolla');
+  }
   return (
     <div className={shoppingCart ? 'shopping-cart-content is-active' : 'shopping-cart-content'}>
       <Container fluid>
