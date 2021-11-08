@@ -50,7 +50,9 @@ const PickColor = () => {
                     </article>
                     <div className="color-choice-wrapper">{pictureArray.map((picture, index) => {
                         return(
-                            <img className={`border border-dark rounded-circle color-choice ${pickedColor == picture.color ? "selectedColor" : ""}`} key={picture.source} src={picture.source} onClick={() => setPickedColor(picture.color)}></img>
+
+                            <img className={`border border-dark rounded-circle color-choice ${pickedColor === picture.color ? "selectedColor" : ""}`} key={picture.source} src={picture.source} onClick={() => setPickedColor(picture.color)}></img>
+
                         )
                     })}</div>
                     <button className="btn-black btn">nästa steg</button>

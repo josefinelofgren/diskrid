@@ -30,7 +30,6 @@ ul {
 li {
   list-style: none;
 }
-
 /* TEXT STYLES */
 
 a {
@@ -711,6 +710,48 @@ input {
   font-size: 10px;
   color: grey;
 }
+/* PICK COLOR */
+.pick-color{
+  height: 100vh;
+}
+.pick-color-content{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.rag-attributes{
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+}
+.color-choice-wrapper{
+  width: auto;
+  height: auto;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+
+.color-choice{
+  width: 10%;
+  cursor: pointer;
+  position: relative;
+}
+.pick-color-text{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* STEP INDICATOR */
+.step-indicator{
+  cursor: pointer;
+}
+.non-active-step{
+  color: rgba(0,0,0,.30);
+}
 
 /* SUBSCRIPTION INFO */ 
 .subscription-info {
@@ -779,5 +820,98 @@ input {
 .order-info {
   position: relative;
   top: 10px;
+}
+
+/* PAYMENT */
+
+.payment{
+  --light-grey: #F4F4F4;
+  --dark-grey: #E7E7E7;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.payment-info{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.payment-columns-wrapper{
+  display: flex;
+}
+.payment-column{
+  width: 50%;
+  /* height: 200px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.payment-column input {
+  width: 100% !important;
+  background-color: var(--dark-grey);
+  border: none;
+  border-radius: 5px;
+}
+/* .payment-left{
+  background-color: pink;
+} */
+
+.payment-right input{
+  width: auto !important;
+}
+/* .payment-name-div{
+  display: flex;
+  justify-content: space-between;
+} */
+.payment-details-div {
+  width: 75%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 1em;
+  border: 2px solid var(--dark-grey);
+  margin: 1%;
+}
+.payment-form{
+  width: 80%;
+  background-color: var(--light-grey);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%;
+  min-height: 40vh;
+  justify-content: center;
+}
+.payment-choose-payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.payment-radio-wrapper {
+  min-width: 75px;
+  width: 45%;
+  display: flex;
+  gap: 10%;
+}
+.klarna-logo {
+  min-width: 30px;
+  width: 15%;
+}
+.card-logos {
+  min-width: 60px;
+  width: 40%;
+}
+.checkout-button {
+  margin-top: 2em;
+}
+.accept-account-wrapper {
+  display: flex;
+  width: 80%;
+  margin-top: 20%;
+  gap: 5%;
 }
 

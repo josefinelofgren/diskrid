@@ -16,8 +16,10 @@ import AboutUs from './components/AboutUs';
 import PickQuantity from './components/PickQuantity';
 import PickDelivery from './components/PickDelivery';
 import Footer from './components/Footer';
+import PickColor from './components/PickColor';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
+import Payment from './components/Payment';
 
 
 
@@ -39,7 +41,12 @@ function App() {
                   <Mission />
                   <PickColor/>
                   <PickQuantity quantity={quantity} />
+
+                  <PickColor/>
+                  <Payment/>
+
                   <PickDelivery delivery={delivery} />
+
                   <AboutUs />
               </Route>
               <Route
