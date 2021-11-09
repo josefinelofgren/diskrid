@@ -30,6 +30,15 @@ li {
   list-style: none;
 }
 
+.row {
+  padding: 0!important;
+  margin: 0 !important;
+}
+
+.col-md-6 {
+  padding: 0 !important;
+}
+
 /* TEXT STYLES */
 
 a {
@@ -374,27 +383,30 @@ input {
 /* MISSION */
 
 .mission {
-  height: 100vh;
+  background-color: #B4A391;
+  width: 100vw;
+  color: #fff;
+}
+
+.mission .row {
+  min-height: 500px;
 }
 
 .mission-content {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.mission-left {
-  width: 100vw;
-  height: 70vh;
-  background-color: #B4A391;
+  width: 100%;
   text-align: left;
-  padding: 14%;
+  padding: 10%;
 }
 
-.mission-right {
-  width: 100vw;
-  height: 30vh;
+.mission-content.left {
+  position: relative;
+  top: 50px;
+  padding-bottom: 150px;
+}
+
+.mission-content.right {
+  width: 100%;
+  min-height: 500px;
   background-color: #333;
   background-image: url('../images/disktrasa1.jpg');
   background-size: cover;
@@ -405,12 +417,10 @@ input {
 
   .mission-left {
     width: 50vw;
-    height: 100vh;
   } 
 
   .mission-right {
     width: 50vw;
-    height: 100vh;
   }
 
 }
@@ -428,8 +438,10 @@ input {
 
 /* PICK COLOR */
 .pick-color{
-  height: 100vh;
+  min-height: 100vh;
+  padding: 15vh 0;
 }
+
 .pick-color-content{
   display: flex;
   justify-content: space-evenly;
@@ -448,6 +460,7 @@ input {
   display: flex;
   gap: 1em;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 .color-choice{
@@ -746,3 +759,40 @@ input {
   top: 10px;
 }
 
+
+
+/* REVIEWS */ 
+
+.reviews {
+  background-color: #f1f1f1;
+  padding: 50px 0;
+}
+
+.review-content {
+  padding: 20px;
+}
+
+.review-content .grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-bottom: 10px;
+}
+
+.review-content .grid .right {
+  text-align: right;
+  color: grey;
+}
+
+.review-content .review {
+  margin-bottom: 10px;
+}
+
+.review-content .name {
+  color: grey;
+  font-size: 12px;
+}
+
+
+.slick-next:before, .slick-prev:before {
+    color: #000;
+}
