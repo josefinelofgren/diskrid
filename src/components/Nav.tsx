@@ -4,12 +4,17 @@ import { FiShoppingBag, FiUser } from "react-icons/fi";
 import LogInDropDown from './user/LoginDropDown';
 import SignUpDropDown from './user/SignUpDropDown';
 import ShoppingCart from './user/ShoppingCart';
+import { Link } from 'react-scroll';
 
 interface Props {
   user: any
 }
 
 function Nav(props: Props) {
+
+  const style = {
+    'cursor': 'pointer'
+  }
 
   const { user } = props;
 
@@ -42,7 +47,6 @@ function Nav(props: Props) {
     <Navbar>
       <Container fluid>
         <div>
-          Kom igång
         </div>
         <Navbar.Brand>
           Diskrid
@@ -70,13 +74,43 @@ function Nav(props: Props) {
           )}
           {!user && (
             <>
-            <li><a href="">Kom igång</a></li>
-            <li><a href="">Så funkar det</a></li>
+            <Link 
+            style={style}
+            activeClass="active"
+              to="pickColor"
+              spy={true}
+              smooth={true}
+              offset={70}
+              duration={500}
+             >
+              Kom igång
+             </Link>
+             <Link 
+             style={style}
+            activeClass="active"
+              to="howItWorks"
+              spy={true}
+              smooth={true}
+              offset={70}
+              duration={500}
+             >
+              Så funkar det
+             </Link>
+             <li><a href="">Produkter</a></li>
+            <li><a href="">FAQ & hjälp</a></li>
             </>
           )}
-            <li><a href="">Produkter</a></li>
-            <li><a href="">FAQ & hjälp</a></li>
-            <li><a href="">Om oss</a></li>
+             <Link 
+             style={style}
+            activeClass="active"
+              to="aboutUs"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={500}
+             >
+              Om oss
+             </Link>
         </div>
       </Container>
     </div>
