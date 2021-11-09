@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Row, Col, Container } from 'react-bootstrap';
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import LogInDropDown from './user/LoginDropDown';
+import LogOutDropDown from './user/LogoutDropDown';
 import SignUpDropDown from './user/SignUpDropDown';
 import ShoppingCart from './user/ShoppingCart';
 import { Link } from 'react-scroll';
@@ -126,8 +127,13 @@ function Nav(props: Props) {
     </div>
     <div className={userDropDown ? 'user-dropdown is-active' : 'user-dropdown'}>
       <div className='close-btn' onClick={toggleUserDropDown}/>
+ 
         {logInContent && (
-          <LogInDropDown toggleSignUpContent={toggleSignUpContent}/> 
+          <> {/* EN INLINE IF HÄR SOM KOLLAR OM ANVÄNDAREN ÄR INLOGGAD OCH
+          BEROENDE PÅ SVAR VISAR LOGIN ELLER LOGOUT DROPDOWN NEDAN? */}
+          <LogInDropDown toggleSignUpContent={toggleSignUpContent}/>
+          <LogOutDropDown /> 
+          </>
         )}
         {signUpContent && (
           <SignUpDropDown toggleLogInContent={toggleLogInContent}/> 

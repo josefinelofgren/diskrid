@@ -1,8 +1,15 @@
 {
     "vscode.tsc.compiler.alertTSConfigChanges": "never",
     "cSpell.ignoreWords": [
+        "beroende",
+        "inloggad",
+        "kollar",
         "lj",
         "v",
         "välj"
+    ],
+    "cSpell.words": [
+        "eller",
+        "visar"
     ]
 }
