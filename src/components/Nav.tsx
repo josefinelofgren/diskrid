@@ -4,12 +4,17 @@ import { FiShoppingBag, FiUser } from "react-icons/fi";
 import LogInDropDown from './user/LoginDropDown';
 import SignUpDropDown from './user/SignUpDropDown';
 import ShoppingCart from './user/ShoppingCart';
+import { Link } from 'react-scroll';
 
 interface Props {
   user: any
 }
 
 function Nav(props: Props) {
+
+  const style = {
+    'cursor': 'pointer'
+  }
 
   const { user } = props;
 
@@ -19,10 +24,20 @@ function Nav(props: Props) {
     setUserDropDown(!userDropDown);
     setLogInContent(true);
     setSignUpContent(false);
-  }
+    switch(userDropDown){
+      case false:
+        document.body.style.overflow = 'hidden'
+        break
+      case true: 
+        document.body.style.overflow = 'scroll'
+    }
+   }
 
   // state and toggle for shopping cart 
   const[shoppingCart, setShoppingCart] = useState(false);
+  const toggleShoppingCart = () => {
+    setShoppingCart(!shoppingCart)
+  }
 
   //state and toggle for login and signup content in user dropdown
   const[logInContent, setLogInContent] = useState(false);
@@ -42,7 +57,6 @@ function Nav(props: Props) {
     <Navbar>
       <Container fluid>
         <div>
-          Kom igång
         </div>
         <Navbar.Brand>
           Diskrid
@@ -54,7 +68,7 @@ function Nav(props: Props) {
           </span>
           <span>
             <FiShoppingBag
-            onClick={() => setShoppingCart(!shoppingCart)}/>
+            onClick={toggleShoppingCart}/>
           </span>
         </div>
       </Container>
@@ -70,13 +84,43 @@ function Nav(props: Props) {
           )}
           {!user && (
             <>
-            <li><a href="">Kom igång</a></li>
-            <li><a href="">Så funkar det</a></li>
+            <Link 
+            style={style}
+            activeClass="active"
+              to="pickColor"
+              spy={true}
+              smooth={true}
+              offset={70}
+              duration={500}
+             >
+              Kom igång
+             </Link>
+             <Link 
+             style={style}
+            activeClass="active"
+              to="howItWorks"
+              spy={true}
+              smooth={true}
+              offset={70}
+              duration={500}
+             >
+              Så funkar det
+             </Link>
+             <li><a href="">Produkter</a></li>
+            <li><a href="">FAQ & hjälp</a></li>
             </>
           )}
-            <li><a href="">Produkter</a></li>
-            <li><a href="">FAQ & hjälp</a></li>
-            <li><a href="">Om oss</a></li>
+             <Link 
+             style={style}
+            activeClass="active"
+              to="aboutUs"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={500}
+             >
+              Om oss
+             </Link>
         </div>
       </Container>
     </div>

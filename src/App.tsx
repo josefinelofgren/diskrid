@@ -15,16 +15,20 @@ import PickColor from './components/PickColor';
 import AboutUs from './components/AboutUs';
 import PickQuantity from './components/PickQuantity';
 import Reviews from './components/Reviews';
+import PickDelivery from './components/PickDelivery';
 import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
+import Payment from './components/Payment';
+
 
 
 function App() {
 
   const[user, setUser] = useState(true);
-  const[subscriptionStatus, setSubscriptionStatus] = useState(true);
+  const[subscriptionStatus, setSubscriptionStatus] = useState(false);
   const[quantity, setQuantity] = useState(0);
+  const[delivery, setDelivery] = useState("");
 
   return (
     <div className='app'>
@@ -38,6 +42,12 @@ function App() {
                   <PickColor/>
                   <PickQuantity quantity={quantity} />
                   <Reviews />
+
+                  <PickColor/>
+                  <Payment/>
+
+                  <PickDelivery delivery={delivery} />
+
                   <AboutUs />
               </Route>
               <Route
