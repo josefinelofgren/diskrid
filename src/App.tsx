@@ -25,7 +25,7 @@ import Payment from './components/Payment';
 
 function App() {
 
-  const[user, setUser] = useState(true);
+  const[user, setUser]: any = useState(null);
   const[subscriptionStatus, setSubscriptionStatus] = useState(false);
   const[quantity, setQuantity] = useState(0);
   const[delivery, setDelivery] = useState("");
@@ -33,7 +33,9 @@ function App() {
   return (
     <div className='app'>
       <Router>
-          <Nav user={user}/> 
+          <Nav 
+              user={user}
+              setUser={setUser}/> 
           <Switch>
               <Route exact path='/'>
                   <Header /> 
