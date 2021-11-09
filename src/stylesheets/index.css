@@ -59,6 +59,11 @@ input {
   font-size: 12px !important;
 }
 
+.alert {
+  max-width: 300px;
+  font-size: 10px;
+}
+
 /* BUTTONS */ 
 
 .btn {
