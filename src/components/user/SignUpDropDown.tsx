@@ -59,10 +59,9 @@ function SignUpDropDown(props: Props) {
 
     .then(res => res.json())
     .then(result => {
-      if(result === true){
+      if(result === false){
         setErrorMessage('E-postadressen är upptagen. Logga in eller ange en ny.')
-      } else {
-        console.log('Användare registrerad');
+      } else if(result === true) {
         setUserDropDown(false);
         setUser(email)
         history.push('/account/subscription');
