@@ -8,7 +8,8 @@ import ShoppingCart from './user/ShoppingCart';
 import { Link } from 'react-scroll';
 
 interface Props {
-  user: any
+  user: any,
+  setUser: any
 }
 
 function Nav(props: Props) {
@@ -17,7 +18,7 @@ function Nav(props: Props) {
     'cursor': 'pointer'
   }
 
-  const { user } = props;
+  const { user, setUser } = props;
 
   // state and toggle for user dropdown
   const[userDropDown, setUserDropDown] = useState(false);
@@ -131,12 +132,18 @@ function Nav(props: Props) {
         {logInContent && (
           <> {/* EN INLINE IF HÄR SOM KOLLAR OM ANVÄNDAREN ÄR INLOGGAD OCH
           BEROENDE PÅ SVAR VISAR LOGIN ELLER LOGOUT DROPDOWN NEDAN? */}
-          <LogInDropDown toggleSignUpContent={toggleSignUpContent}/>
+          <LogInDropDown 
+              toggleSignUpContent={toggleSignUpContent} 
+              setUserDropDown={setUserDropDown}
+              setUser={setUser}/> 
           <LogOutDropDown /> 
           </>
         )}
         {signUpContent && (
-          <SignUpDropDown toggleLogInContent={toggleLogInContent}/> 
+          <SignUpDropDown 
+              toggleLogInContent={toggleLogInContent} 
+              setUserDropDown={setUserDropDown}
+              setUser={setUser}/> 
         )}
     </div>
     <div className={shoppingCart ? 'shopping-cart is-active' : 'shopping-cart'}>
