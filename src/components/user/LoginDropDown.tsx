@@ -50,7 +50,8 @@ function LoginDropDown(props: Props) {
       }
       else {
         setUserDropDown(false);
-        setUser(email)
+        setUser(result)
+        console.log(result)
         history.push('/account/subscription');
       }
     })
