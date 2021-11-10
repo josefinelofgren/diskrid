@@ -1,10 +1,9 @@
 // import libaries
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
   Route,
-  useHistory
  } from 'react-router-dom';
 
 // import components
@@ -25,15 +24,35 @@ import Payment from './components/Payment';
 
 function App() {
 
+  const history = useHistory();
   const[user, setUser]: any = useState(null);
   const[subscriptionStatus, setSubscriptionStatus] = useState(false);
   const[quantity, setQuantity] = useState(0);
   const[delivery, setDelivery] = useState("");
 
+  // LOCAL STORAGE FOR CURRENT USER 
+  const currentUser = localStorage.getItem('currentUser');
+
+  useEffect(() => {
+    // if current user exist in localStorage, direct to account/subscription
+    // if not, direct to startpage
+    if (localStorage.getItem('currentUser') !== null) {
+      history.push('/account/subscription')
+      setUser(true);
+    } else {
+      history.push('/')
+    }
+  },[history])
+
+
+
+  useEffect(() => {
+
+    console.log(user)
+  },[user])
   
   return (
     <div className='app'>
-      <Router>
           <Nav 
               user={user}
               setUser={setUser}/> 
@@ -64,7 +83,6 @@ function App() {
               </Route>
           </Switch>
           <Footer /> 
-      </Router>
     </div>
   );
 }

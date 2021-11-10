@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Row, Col, Container } from 'react-bootstrap';
+import { Navbar, Container } from 'react-bootstrap';
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import LogInDropDown from './user/LoginDropDown';
 import LogOutDropDown from './user/LogoutDropDown';
@@ -20,39 +20,42 @@ function Nav(props: Props) {
 
   const { user, setUser } = props;
 
-  // state and toggle for user dropdown
-  const[userDropDown, setUserDropDown] = useState(false);
-  const toggleUserDropDown = () => {
-    setUserDropDown(!userDropDown);
-    setLogInContent(true);
-    setSignUpContent(false);
-    switch(userDropDown){
-      case false:
-        document.body.style.overflow = 'hidden'
-        break
-      case true: 
-        document.body.style.overflow = 'scroll'
-    }
-   }
+// states 
+const[userDropDown, setUserDropDown] = useState(false);
+const[logInContent, setLogInContent] = useState(false);
+const[shoppingCart, setShoppingCart] = useState(false);
+const[signUpContent, setSignUpContent] = useState(false);
 
-  // state and toggle for shopping cart 
-  const[shoppingCart, setShoppingCart] = useState(false);
-  const toggleShoppingCart = () => {
-    setShoppingCart(!shoppingCart)
+const toggleUserDropDown = () => {
+  setUserDropDown(!userDropDown);
+  setLogInContent(true);
+  setSignUpContent(false);
+  switch(userDropDown){
+    case false:
+      document.body.style.overflow = 'hidden'
+      break
+    case true:
+      document.body.style.overflow = 'scroll'
   }
+ }
 
-  //state and toggle for login and signup content in user dropdown
-  const[logInContent, setLogInContent] = useState(false);
-  const toggleLogInContent = () => {
-    setLogInContent(true);
-    setSignUpContent(false);
-  }
+// toggle for shopping cart
+const toggleShoppingCart = () => {
+  setShoppingCart(!shoppingCart);
+  setUserDropDown(false);
+}
 
-  const[signUpContent, setSignUpContent] = useState(false);
-  const toggleSignUpContent = () => {
-    setSignUpContent(true);
-    setLogInContent(false)
-  }
+//state and toggle for login and signup content in user dropdown
+const toggleLogInContent = () => {
+  setLogInContent(true);
+  setSignUpContent(false);
+}
+
+const toggleSignUpContent = () => {
+  setSignUpContent(true);
+  setLogInContent(false)
+}
+
 
   return (
     <>
@@ -69,8 +72,8 @@ function Nav(props: Props) {
             onClick={toggleUserDropDown}/>
           </span>
           <span>
-            <FiShoppingBag
-            onClick={toggleShoppingCart}/>
+            <FiShoppingBag 
+            onClick={toggleShoppingCart}/> 
           </span>
         </div>
       </Container>
@@ -80,8 +83,8 @@ function Nav(props: Props) {
         <div className='subnav-grid'>
         {user && (
           <>
-          <li><a href="">Min prenumeration</a></li>
-          <li><a href="">Konto</a></li>
+          <li><Link to='/'>Min prenumeration</Link></li>
+          <li><Link to='/'>Konto</Link></li>
           </>
           )}
           {!user && (
@@ -108,8 +111,8 @@ function Nav(props: Props) {
              >
               Så funkar det
              </Link>
-             <li><a href="">Produkter</a></li>
-            <li><a href="">FAQ & hjälp</a></li>
+             <li><Link to='/'>Produkter</Link></li>
+            <li><Link to='/'>FAQ & hjälp</Link></li>
             </>
           )}
              <Link 
@@ -127,8 +130,7 @@ function Nav(props: Props) {
       </Container>
     </div>
     <div className={userDropDown ? 'user-dropdown is-active' : 'user-dropdown'}>
-      <div className='close-btn' onClick={toggleUserDropDown}/>
- 
+      <div className='close-btn' onClick={() => setUserDropDown(false)}/>
         {logInContent && (
           <> {/* EN INLINE IF HÄR SOM KOLLAR OM ANVÄNDAREN ÄR INLOGGAD OCH
           BEROENDE PÅ SVAR VISAR LOGIN ELLER LOGOUT DROPDOWN NEDAN? */}
@@ -147,7 +149,7 @@ function Nav(props: Props) {
         )}
     </div>
     <div className={shoppingCart ? 'shopping-cart is-active' : 'shopping-cart'}>
-        <div className='close-btn' onClick={() => setShoppingCart(!shoppingCart)}/>
+        <div className='close-btn' onClick={() => setShoppingCart(false)}/>
             <ShoppingCart shoppingCart={shoppingCart}/> 
     </div>
     </>
