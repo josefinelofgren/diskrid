@@ -1,9 +1,10 @@
 // import libaries
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route
+  Route,
+  useHistory
  } from 'react-router-dom';
 
 // import components
@@ -22,18 +23,20 @@ import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
 import Payment from './components/Payment';
 
 
-
 function App() {
 
-  const[user, setUser] = useState(true);
+  const[user, setUser]: any = useState(null);
   const[subscriptionStatus, setSubscriptionStatus] = useState(false);
   const[quantity, setQuantity] = useState(0);
   const[delivery, setDelivery] = useState("");
 
+  
   return (
     <div className='app'>
       <Router>
-          <Nav user={user}/> 
+          <Nav 
+              user={user}
+              setUser={setUser}/> 
           <Switch>
               <Route exact path='/'>
                   <Header /> 

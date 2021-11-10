@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import FormError from '../FormError';
+import { useHistory } from 'react-router-dom'; 
 
 interface Props {
   toggleLogInContent: any; 
+  setUserDropDown: any;
+  setUser: any;
 }
 
 function SignUpDropDown(props: Props) {
 
-  const { toggleLogInContent } = props;
+  const history = useHistory();
+  const { toggleLogInContent, setUserDropDown, setUser } = props;
 
   // states for signup
   const [email, setEmail] = useState('');
@@ -35,6 +39,35 @@ function SignUpDropDown(props: Props) {
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
+
+    let newUser = {
+      email: email,
+      password: passOne,
+      subscriptionStatus: false
+    };
+
+    console.log(newUser);
+
+    // fetch data from db
+    fetch("http://localhost:4000/users/sign-up", {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(newUser)
+    })
+
+    .then(res => res.json())
+    .then(result => {
+      if(result === false){
+        setErrorMessage('E-postadressen är upptagen. Logga in eller ange en ny.')
+      } else if(result === true) {
+        setUserDropDown(false);
+        setUser(email)
+        history.push('/account/subscription');
+      }
+    })
+
   }
 
   // state for checkbox

@@ -73,8 +73,8 @@ function Reviews() {
   return (
     <div className='reviews'>
     <Slider {...settings}>
-         {reviews.map((review:any) => (
-           <div className='review-content'>
+         {reviews.map((review:any, i:number) => (
+           <div className='review-content' key={i}>
            <div className='grid'>
                <div className='stars'>
                    {review.rating}
