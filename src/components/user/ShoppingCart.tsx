@@ -5,12 +5,8 @@ interface Props {
 }
 
 function ShoppingCart(props: Props) {
-  
-  
 
   const { shoppingCart } = props;
-
-  console.log(shoppingCart);
 
   switch(shoppingCart){
     case false:
