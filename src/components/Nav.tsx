@@ -19,6 +19,7 @@ function Nav(props: Props) {
   }
 
   const { user, setUser } = props;
+  const userLoggedIn = localStorage.getItem('currentUser') !== null;
 
 // states 
 const[userDropDown, setUserDropDown] = useState(false);
@@ -55,7 +56,6 @@ const toggleSignUpContent = () => {
   setSignUpContent(true);
   setLogInContent(false)
 }
-
 
   return (
     <>
@@ -132,13 +132,11 @@ const toggleSignUpContent = () => {
     <div className={userDropDown ? 'user-dropdown is-active' : 'user-dropdown'}>
       <div className='close-btn' onClick={() => setUserDropDown(false)}/>
         {logInContent && (
-          <> {/* EN INLINE IF HÄR SOM KOLLAR OM ANVÄNDAREN ÄR INLOGGAD OCH
-          BEROENDE PÅ SVAR VISAR LOGIN ELLER LOGOUT DROPDOWN NEDAN? */}
-          <LogInDropDown 
+          <> 
+          {!userLoggedIn ? <LogInDropDown 
               toggleSignUpContent={toggleSignUpContent} 
               setUserDropDown={setUserDropDown}
-              setUser={setUser}/> 
-          <LogOutDropDown /> 
+              setUser={setUser}/> : <LogOutDropDown /> }
           </>
         )}
         {signUpContent && (

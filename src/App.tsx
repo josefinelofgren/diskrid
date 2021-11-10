@@ -1,9 +1,10 @@
 // import libaries
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
   Route,
+  useHistory,
  } from 'react-router-dom';
 
 // import components
