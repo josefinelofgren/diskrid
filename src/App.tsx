@@ -1,10 +1,11 @@
 // import libaries
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route,
+  Route
  } from 'react-router-dom';
+ import { useHistory } from 'react-router-dom'; 
 
 // import components
 import Nav from './components/Nav';
@@ -43,13 +44,6 @@ function App() {
       history.push('/')
     }
   },[history])
-
-
-
-  useEffect(() => {
-
-    console.log(user)
-  },[user])
   
   return (
     <div className='app'>
