@@ -43,7 +43,8 @@ function SignUpDropDown(props: Props) {
     let newUser = {
       email: email,
       password: passOne,
-      subscriptionStatus: false
+      subscriptionStatus: false,
+      subscription:{}
     };
 
     console.log(newUser);
@@ -61,9 +62,10 @@ function SignUpDropDown(props: Props) {
     .then(result => {
       if(result === false){
         setErrorMessage('E-postadressen är upptagen. Logga in eller ange en ny.')
-      } else if(result === true) {
+      } else {
         setUserDropDown(false);
-        setUser(email)
+        setUser(result)
+        console.log(result)
         history.push('/account/subscription');
       }
     })
