@@ -39,7 +39,7 @@ const PickColor = () => {
 
     return (
         <Container fluid>
-            <div className="pick-color">
+            <div className="pick-color" id='pickColor'>
                 <section className="pick-color-content">
                     <article className="pick-color-text">
                         <h2 className="page-indicator">STEG 1/4</h2>

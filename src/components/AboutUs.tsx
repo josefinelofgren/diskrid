@@ -3,7 +3,7 @@ import { Container, Button } from 'react-bootstrap';
 
 function AboutUs() {
   return (
-    <div className='about-us'>
+    <div className='about-us' id="aboutUs">
       <Container fluid>
       <div className='about-us-content'>
               <h3>Om oss</h3>

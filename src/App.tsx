@@ -1,9 +1,10 @@
 // import libaries
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route
+  Route,
+  useHistory
  } from 'react-router-dom';
 
 // import components
@@ -14,6 +15,7 @@ import Mission from './components/Mission';
 import PickColor from './components/PickColor';
 import AboutUs from './components/AboutUs';
 import PickQuantity from './components/PickQuantity';
+import Reviews from './components/Reviews';
 import PickDelivery from './components/PickDelivery';
 import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
@@ -21,18 +23,20 @@ import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
 import Payment from './components/Payment';
 
 
-
 function App() {
 
-  const[user, setUser] = useState(false);
-  const[subscriptionStatus, setSubscriptionStatus] = useState(true);
+  const[user, setUser]: any = useState(null);
+  const[subscriptionStatus, setSubscriptionStatus] = useState(false);
   const[quantity, setQuantity] = useState(0);
   const[delivery, setDelivery] = useState("");
 
+  
   return (
     <div className='app'>
       <Router>
-          <Nav user={user}/> 
+          <Nav 
+              user={user}
+              setUser={setUser}/> 
           <Switch>
               <Route exact path='/'>
                   <Header /> 
@@ -40,6 +44,7 @@ function App() {
                   <Mission />
                   <PickColor/>
                   <PickQuantity quantity={quantity} />
+                  {/* <Reviews /> */}
 
                   <PickColor/>
                   <Payment/>
