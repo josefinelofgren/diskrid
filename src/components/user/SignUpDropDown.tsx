@@ -64,8 +64,10 @@ function SignUpDropDown(props: Props) {
         setErrorMessage('E-postadressen är upptagen. Logga in eller ange en ny.')
       } else {
         setUserDropDown(false);
-        setUser(result)
+        setUser(true)
         console.log(result)
+        localStorage.setItem('currentUser', result);
+        localStorage.getItem('currentUser');
         history.push('/account/subscription');
       }
     })
