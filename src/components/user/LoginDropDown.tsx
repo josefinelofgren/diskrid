@@ -2,22 +2,27 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import FormError from '../FormError';
+import { useHistory } from 'react-router-dom'; 
 
 interface Props {
   toggleSignUpContent: any; 
+  setUserDropDown: any;
+  setUser: any;
 }
 
 
 function LoginDropDown(props: Props) {
 
+  const history = useHistory();
+
   // state for checkbox
-  const[checked, setChecked] = useState(false);
-  const { toggleSignUpContent } = props;
+  const[checked, setChecked] = useState(true);
+  const { toggleSignUpContent, setUserDropDown, setUser } = props;
 
   // states for login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage]: any = useState(null);
 
 
 
@@ -29,7 +34,27 @@ function LoginDropDown(props: Props) {
       password: password
     };
 
+    // fetch data from db 
+    fetch("http://localhost:4000/users/log-in", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+    })
+    .then(res => res.json())
+    .then(result => {
 
+      if(result === false){
+        setErrorMessage("Fel e-postadress- och/eller lösenord, försök igen.")
+      }
+      else {
+        setUserDropDown(false);
+        setUser(result)
+        console.log(result)
+        history.push('/account/subscription');
+      }
+    })
   }
 
 
