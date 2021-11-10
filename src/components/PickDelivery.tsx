@@ -3,6 +3,7 @@ import { Button, Container, Card } from "react-bootstrap";
 
 interface Props {
   delivery: any;
+  handleDeliveryChoice: (deliveryChoice: string) => void
 }
 
 const PickDelivery = (props: Props) => {
@@ -65,7 +66,7 @@ const PickDelivery = (props: Props) => {
             </Card>
           </section>
 
-          <Button className="btn-black steps-btn" type="submit">
+          <Button className="btn-black steps-btn" type="submit" onClick={() => props.handleDeliveryChoice(delivery)}>
             Nästa steg
           </Button>
         </section>

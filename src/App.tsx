@@ -27,10 +27,20 @@ function App() {
 
   const[user, setUser]: any = useState(null);
   const[subscriptionStatus, setSubscriptionStatus] = useState(false);
-  const[quantity, setQuantity] = useState(0);
+  const[quantity, setQuantity] = useState<number>(0);
   const[delivery, setDelivery] = useState("");
+  const[colorChoice, setColorChoice] = useState("")
 
-  
+  const handleColorChoice = (colorChoice: string) => {
+    setColorChoice(colorChoice);
+  }
+  const handleQuantityChoice = (quantityChoice: number) => {
+    setQuantity(quantityChoice);
+  }
+  const handleDeliveryChoice = (deliveryChoice: string) => {
+    setDelivery(deliveryChoice);
+  }
+
   return (
     <div className='app'>
       <Router>
@@ -42,14 +52,14 @@ function App() {
                   <Header /> 
                   <HowItWorks />
                   <Mission />
-                  <PickColor/>
-                  <PickQuantity quantity={quantity} />
+                  <PickColor colorChoice={handleColorChoice}/>
+                  <PickQuantity quantity={quantity} handleQuantityChoice={handleQuantityChoice}/>
                   {/* <Reviews /> */}
 
-                  <PickColor/>
+                  {/* <PickColor/> */}
                   <Payment/>
 
-                  <PickDelivery delivery={delivery} />
+                  <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
 
                   <AboutUs />
               </Route>

@@ -3,6 +3,7 @@ import { Button, Container } from 'react-bootstrap';
 
 interface Props {
     quantity: any;
+    handleQuantityChoice: (quantityChoice: number) => void;
 }
 
 const PickQuantity = (props: Props) => {
@@ -50,7 +51,7 @@ const PickQuantity = (props: Props) => {
                         className='form-control-label quantity-input' 
                         onChange={e => handleChange(e)}
                     /> <br />
-                    <Button className='btn-black steps-btn' type="submit">Nästa steg</Button>
+                    <Button className='btn-black steps-btn' type="submit" onClick={() => props.handleQuantityChoice(quantity)}>Nästa steg</Button>
                 </form>
             </section>
             <section>
