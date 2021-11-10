@@ -970,3 +970,11 @@ input {
   gap: 5%;
 }
 
+svg {
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  margin: -30px;
+  border-radius: 20%;
+  transform: scale(1, 1);
+}
