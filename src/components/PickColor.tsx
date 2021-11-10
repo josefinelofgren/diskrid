@@ -6,8 +6,10 @@ interface IColorArray {
     source: string,
     color: string
 }
-
-const PickColor = () => {
+interface Props {
+    colorChoice: (choice: string) => void;
+}
+const PickColor = (props: Props) => {
 
     
     //This is a placeholder. Picture array will be fetched from db.
@@ -55,7 +57,7 @@ const PickColor = () => {
 
                         )
                     })}</div>
-                    <button className="btn-black btn">nästa steg</button>
+                    <button className="btn-black btn" onClick={()=> props.colorChoice(pickedColor)}>nästa steg</button>
 
                 </section>
             </div>
