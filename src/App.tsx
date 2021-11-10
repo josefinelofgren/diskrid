@@ -44,7 +44,7 @@ function App() {
                   <Mission />
                   <PickColor/>
                   <PickQuantity quantity={quantity} />
-                  <Reviews />
+                  {/* <Reviews /> */}
 
                   <PickColor/>
                   <Payment/>
