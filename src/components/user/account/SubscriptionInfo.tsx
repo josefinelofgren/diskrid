@@ -16,8 +16,22 @@ function SubscriptionInfo(props: Props) {
     e.preventDefault();
     console.log("End subscription")
 
-    let newSubscriptionStatus = false; 
-    console.log(currentUser);
+    let updateSubscription = {
+      email: currentUser.email,
+      subscriptionStatus: false,
+      subscription: {},
+    }
+
+    console.log(updateSubscription);
+
+      // fetch data from db
+       fetch("http://localhost:4000/users/update-subscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateSubscription),
+      })
 
   }
 
