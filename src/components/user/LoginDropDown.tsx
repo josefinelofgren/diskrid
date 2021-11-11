@@ -57,8 +57,8 @@ function LoginDropDown(props: Props) {
         history.push('/account/subscription');
 
         // current user to localStorage
-        localStorage.setItem('currentUser', result);
-        localStorage.getItem('currentUser');
+        localStorage.setItem('currentUser', JSON.stringify(result));
+        JSON.parse(localStorage.getItem('currentUser') || '{}');
       }
     })
   }

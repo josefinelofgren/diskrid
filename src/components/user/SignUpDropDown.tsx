@@ -66,8 +66,8 @@ function SignUpDropDown(props: Props) {
         setUserDropDown(false);
         setUser(true)
         console.log(result)
-        localStorage.setItem('currentUser', result);
-        localStorage.getItem('currentUser');
+        localStorage.setItem('currentUser', JSON.stringify(result));
+        JSON.parse(localStorage.getItem('currentUser') || '{}');
         history.push('/account/subscription');
       }
     })

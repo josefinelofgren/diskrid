@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 
 function LogoutDropDown() {
 
-  const currentUser = localStorage.getItem('currentUser');
+  let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
   // Log out user on button click and clear local storage
 
@@ -19,7 +19,7 @@ function LogoutDropDown() {
             <form onSubmit={e => handleSubmit(e)}>
               <section className='form-text'>
                 <p>
-                  <b>Inloggad som: </b> {currentUser}
+                  <b>Inloggad som: </b> {currentUser.email}
                 </p>
               </section>
                 <div className='form-group'>

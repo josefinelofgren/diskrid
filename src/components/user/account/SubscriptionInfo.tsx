@@ -2,15 +2,30 @@ import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration
-
 interface Props {
   subscriptionStatus: boolean; 
+  currentUser: any; 
 }
 
 
 function SubscriptionInfo(props: Props) {
 
-  const { subscriptionStatus } = props;
+  const { subscriptionStatus, currentUser } = props;
+
+  const endSubscription = (e:any) => {
+    e.preventDefault();
+    console.log("End subscription")
+
+    let newSubscriptionStatus = false; 
+    console.log(currentUser);
+
+  }
+
+  const pauseSubscription = (e:any) => {
+    e.preventDefault();
+    console.log("Pause subscription")
+  }
+
 
   return (
     <div className='subscription-info'>
@@ -23,9 +38,10 @@ function SubscriptionInfo(props: Props) {
             <h3 className='fw-bold mt-4'>Nästa order skapas den</h3>
             <h1 className='fw-bold'>25 Nov, 2021</h1>
             <p className='mb-4'>Leverans alt: <span className='fw-bold'>Varannan vecka</span></p>
-            <Button className='mb-2 btn-transparent'>Hoppa över nästa leverans</Button><br/> 
             <Button className='mb-2 btn-transparent'>Ändra prenumeration</Button><br/>
-            <Button className='mb-2 btn-transparent'>Avsluta prenumeration</Button>
+            <Button className='mb-2 btn-transparent'>Hoppa över nästa leverans</Button><br/> 
+            <Button onClick={e => pauseSubscription(e)} className='mb-2 btn-transparent'>Pausa prenumeration</Button><br/>
+            <Button onClick={e => endSubscription(e)} className='mb-2 btn-transparent'>Avsluta prenumeration</Button>
             </>
           )}
           {!subscriptionStatus && (
