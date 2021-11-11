@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route
+  Route,
   useHistory
  } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
@@ -24,13 +24,14 @@ import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
 import Payment from './components/Payment';
+import { AnyCnameRecord } from 'dns';
 
 
 function App() {
 
   const history = useHistory();
   const[user, setUser]: any = useState(null);
-  const[subscriptionStatus, setSubscriptionStatus] = useState(false);
+  const[subscriptionStatus, setSubscriptionStatus] = useState(true);
   const[quantity, setQuantity] = useState<number>(0);
   const[delivery, setDelivery] = useState("");
   const[colorChoice, setColorChoice] = useState("")
@@ -46,10 +47,11 @@ function App() {
   }
 
 
-  // LOCAL STORAGE FOR CURRENT USER 
-  const currentUser = localStorage.getItem('currentUser');
+  // LOCAL STORAGE FOR CURRENT USER
+  let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
   useEffect(() => {
+    console.log(currentUser)
     // if current user exist in localStorage, direct to account/subscription
     // if not, direct to startpage
     if (localStorage.getItem('currentUser') !== null) {
@@ -86,7 +88,7 @@ function App() {
               <Route
                   path='/account/subscription'>
                   <div className='subscription'>
-                      <SubscriptionInfo subscriptionStatus={subscriptionStatus}/> 
+                      <SubscriptionInfo subscriptionStatus={subscriptionStatus} currentUser={currentUser}/> 
                       {subscriptionStatus && (
                         <NextDeliveryInfo /> 
                       )}
