@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router, 
   Switch,
   Route,
-  useHistory,
+  useHistory
  } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
 import {ReactComponent as ArrowSVG} from "./images/arrow.svg";
