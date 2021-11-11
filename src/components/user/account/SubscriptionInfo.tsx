@@ -33,6 +33,14 @@ function SubscriptionInfo(props: Props) {
         body: JSON.stringify(updateSubscription),
       })
 
+      .then(res => res.json())
+      .then(result => {
+
+      // current user to localStorage
+      localStorage.setItem('currentUser', JSON.stringify(result));
+      JSON.parse(localStorage.getItem('currentUser') || '{}');
+
+      })
   }
 
   const pauseSubscription = (e:any) => {
