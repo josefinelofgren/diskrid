@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route
+  Route,
   useHistory
  } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
