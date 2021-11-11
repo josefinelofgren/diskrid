@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import LogInDropDown from './user/LoginDropDown';
+import LogOutDropDown from './user/LogoutDropDown';
 import SignUpDropDown from './user/SignUpDropDown';
 import ShoppingCart from './user/ShoppingCart';
 import { Link } from 'react-scroll';
@@ -18,6 +19,7 @@ function Nav(props: Props) {
   }
 
   const { user, setUser } = props;
+  const userLoggedIn = localStorage.getItem('currentUser') !== null;
 
 // states 
 const[userDropDown, setUserDropDown] = useState(false);
@@ -54,7 +56,6 @@ const toggleSignUpContent = () => {
   setSignUpContent(true);
   setLogInContent(false)
 }
-
 
   return (
     <>
@@ -131,10 +132,12 @@ const toggleSignUpContent = () => {
     <div className={userDropDown ? 'user-dropdown is-active' : 'user-dropdown'}>
       <div className='close-btn' onClick={() => setUserDropDown(false)}/>
         {logInContent && (
-          <LogInDropDown 
+          <> 
+          {!userLoggedIn ? <LogInDropDown 
               toggleSignUpContent={toggleSignUpContent} 
               setUserDropDown={setUserDropDown}
-              setUser={setUser}/> 
+              setUser={setUser}/> : <LogOutDropDown /> }
+          </>
         )}
         {signUpContent && (
           <SignUpDropDown 
