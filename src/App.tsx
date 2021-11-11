@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
-  Route,
+  Route, useHistory
  } from 'react-router-dom';
+
 
 // import components
 import Nav from './components/Nav';
