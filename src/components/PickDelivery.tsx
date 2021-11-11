@@ -29,7 +29,7 @@ const PickDelivery = (props: Props) => {
     <Container fluid>
       <div className="pick-delivery">
         <section className="delivery-content">
-        <h2 className="page-indicator">STEG 4/4</h2>
+        <h2 className="page-indicator">STEG 3/4</h2>
           <StepIndicator selectedPage="Välj hur ofta"/>
           <h2>Hur ofta vill du ha din leverans?</h2>
           <section className="delivery-boxes">
