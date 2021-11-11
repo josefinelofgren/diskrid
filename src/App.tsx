@@ -6,6 +6,8 @@ import {
   Route,
   useHistory
  } from 'react-router-dom';
+import ScrollToTop from 'react-scroll-to-top';
+import {ReactComponent as ArrowSVG} from "./images/arrow.svg";
 
 // import components
 import Nav from './components/Nav';
@@ -73,6 +75,7 @@ function App() {
           <Switch>
               <Route exact path='/'>
                   <Header /> 
+                  <ScrollToTop smooth top={200} component={<ArrowSVG />} />
                   <HowItWorks />
                   <Mission />
                   <PickColor colorChoice={handleColorChoice}/>
