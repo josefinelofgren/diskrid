@@ -75,12 +75,9 @@ function App() {
                   <PickColor colorChoice={handleColorChoice}/>
                   <PickQuantity quantity={quantity} handleQuantityChoice={handleQuantityChoice}/>
                   {/* <Reviews /> */}
-
                   {/* <PickColor/> */}
-                  <Payment/>
-
                   <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
-
+                  <Payment/>
                   <AboutUs />
               </Route>
               <Route

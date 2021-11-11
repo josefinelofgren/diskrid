@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Card } from "react-bootstrap";
+import StepIndicator from './StepIndicator';
 
 interface Props {
   delivery: any;
@@ -28,7 +29,8 @@ const PickDelivery = (props: Props) => {
     <Container fluid>
       <div className="pick-delivery">
         <section className="delivery-content">
-          <h3>Välj leverans</h3>
+        <h2 className="page-indicator">STEG 4/4</h2>
+          <StepIndicator selectedPage="Välj hur ofta"/>
           <h2>Hur ofta vill du ha din leverans?</h2>
           <section className="delivery-boxes">
 
