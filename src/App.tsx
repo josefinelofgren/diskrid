@@ -24,7 +24,6 @@ import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
 import Payment from './components/Payment';
-import { AnyCnameRecord } from 'dns';
 
 
 function App() {
