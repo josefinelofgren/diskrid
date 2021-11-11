@@ -1,20 +1,51 @@
 import React from 'react';
+import {useState} from 'react';
 import StepIndicator from './StepIndicator';
 
+interface Props {
+    colorChoice: string,
+    quantity: number,
+    delivery: string
+}
 
+const Payment = (props: Props) => {
 
-const Payment = () => {
+    const [details, setDetails] = useState({
+        fName: "",
+        lName: "",
+        street: "",
+        zip: "",
+        city: "",
+        email: ""
+    })
 
-    
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const name: string = event.target.name;
+        const value: string = event.target.value;
+
+        //Changes state dynamically based on name of input
+        setDetails(prevState => ({ ...prevState, [name]: value}));
+    }
     const submitOrder = (e: any) => {
         e.preventDefault();
-        // fetch("http:localhost:4000/order", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify()
-        // })
+        
+        fetch("http://localhost:4000/users/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: details.email,
+                color: props.colorChoice,
+                quantity: props.quantity,
+                delivery: props.delivery
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        })
     }
 
     return (
@@ -31,21 +62,21 @@ const Payment = () => {
                             
                                 <div className="payment-details-div">
                                     <label htmlFor="payment-delivery-fName">Förnamn</label>
-                                    <input type="text" id="payment-delivery-fName" />
+                                    <input type="text" id="payment-delivery-fName" name="fName" onChange={handleChange} required/>
                                     <label htmlFor="payment-delivery-lName">Efternamn</label>
-                                    <input type="text" id="payment-delivery-lName" />
+                                    <input type="text" id="payment-delivery-lName" name="lName" onChange={handleChange} required/>
                                 </div>
                                 <div className="payment-details-div">
                                     <label htmlFor="payment-delivery-street">Gatuadress</label>
-                                    <input type="text" id="payment-delivery-street"/>
+                                    <input type="text" id="payment-delivery-street" name="street" onChange={handleChange} required/>
                                     <label htmlFor="payment-delivery-zip">Postnummer</label>
-                                    <input type="text" id="payment-delivery-zip"/>
+                                    <input type="text" id="payment-delivery-zip" name="zip" onChange={handleChange} required/>
                                     <label htmlFor="payment-delivery-city">Postort</label>
-                                    <input type="text" id="payment-delivery-city"/>
+                                    <input type="text" id="payment-delivery-city" name="city" onChange={handleChange} required/>
                                 </div>
                                 <div className="payment-details-div">
                                     <label htmlFor="payment-delivery-email">E-postadress</label>
-                                    <input type="text" id="payment-delivery-email" />
+                                    <input type="text" id="payment-delivery-email" name="email" onChange={handleChange} required/>
                                 </div>
                             
                         
@@ -55,14 +86,14 @@ const Payment = () => {
                         
                                 <div className="payment-details-div payment-choose-payment">
                                     <div className="payment-radio-wrapper">
-                                        <input type="radio" name="payment" id="payment-klarna" />
+                                        <input type="radio" name="payment" id="payment-klarna" required/>
                                         <label htmlFor="payment-klarna">Klarna</label>
                                     </div>
                                     <img src="./img/klarna-logo.png" alt="" className="klarna-logo" />
                                 </div>
                                 <div className="payment-details-div payment-choose-payment">
                                     <div className="payment-radio-wrapper">
-                                        <input type="radio" name="payment" id="payment-card" />
+                                        <input type="radio" name="payment" id="payment-card" required/>
                                         <label htmlFor="payment-card">Betala med kort</label>
                                     </div>
                                     <img src="./img/card-logos.png" alt="" className="card-logos" />

@@ -77,7 +77,7 @@ function App() {
                   {/* <Reviews /> */}
                   {/* <PickColor/> */}
                   <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
-                  <Payment/>
+                  <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity}/>
                   <AboutUs />
               </Route>
               <Route
