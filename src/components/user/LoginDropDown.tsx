@@ -50,9 +50,15 @@ function LoginDropDown(props: Props) {
       }
       else {
         setUserDropDown(false);
-        setUser(result)
+        setUser(true)
         console.log(result)
+
+        // naviagate to users subscription
         history.push('/account/subscription');
+
+        // current user to localStorage
+        localStorage.setItem('currentUser', result);
+        localStorage.getItem('currentUser');
       }
     })
   }

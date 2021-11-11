@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button, Container, Card } from "react-bootstrap";
+import StepIndicator from './StepIndicator';
 
 interface Props {
   delivery: any;
+  handleDeliveryChoice: (deliveryChoice: string) => void
 }
 
 const PickDelivery = (props: Props) => {
@@ -14,7 +16,7 @@ const PickDelivery = (props: Props) => {
     if (e.target.id === "01") {
       selectedDelivery = "Varje vecka";
     } else if (e.target.id === "02") {
-      selectedDelivery = "Varanann vecka";
+      selectedDelivery = "Varannan vecka";
     } else if (e.target.id === "03") {
       selectedDelivery = "Varannan månad";
     }
@@ -27,7 +29,8 @@ const PickDelivery = (props: Props) => {
     <Container fluid>
       <div className="pick-delivery">
         <section className="delivery-content">
-          <h3>Välj leverans</h3>
+        <h2 className="page-indicator">STEG 3/4</h2>
+          <StepIndicator selectedPage="Välj hur ofta"/>
           <h2>Hur ofta vill du ha din leverans?</h2>
           <section className="delivery-boxes">
 
@@ -59,13 +62,13 @@ const PickDelivery = (props: Props) => {
               onClick={(e) => handleClick(e)}
             >
               <Card.Body>
-                <Card.Title className="card-title">Varannan vecka</Card.Title>
+                <Card.Title className="card-title">Varannan månad</Card.Title>
                 <Card.Text>Jag använder min disktrasa sällan men behöver bli påmind att byta ut den ibland.</Card.Text>
               </Card.Body>
             </Card>
           </section>
 
-          <Button className="btn-black steps-btn" type="submit">
+          <Button className="btn-black steps-btn" type="submit" onClick={() => props.handleDeliveryChoice(delivery)}>
             Nästa steg
           </Button>
         </section>

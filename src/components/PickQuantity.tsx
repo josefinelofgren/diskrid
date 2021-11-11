@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
+import StepIndicator from './StepIndicator';
 
 interface Props {
     quantity: any;
+    handleQuantityChoice: (quantityChoice: number) => void;
 }
 
 const PickQuantity = (props: Props) => {
@@ -34,7 +36,8 @@ const PickQuantity = (props: Props) => {
     <div className='quantity'>
         <Container fluid>
           <div className='quantity-content'>
-              <h3>Välj antal</h3>
+          <h2 className="page-indicator">STEG 2/4</h2>
+          <StepIndicator selectedPage="Välj antal"/>
             <h2>Hur många disktrasor vill du ha i din leverans?</h2>
             <section className="quantity-circles">
                 <div className="quantity-circle" id="1" onClick={e => handleClick(e)}>1</div>
@@ -50,7 +53,7 @@ const PickQuantity = (props: Props) => {
                         className='form-control-label quantity-input' 
                         onChange={e => handleChange(e)}
                     /> <br />
-                    <Button className='btn-black steps-btn' type="submit">Nästa steg</Button>
+                    <Button className='btn-black steps-btn' type="submit" onClick={() => props.handleQuantityChoice(quantity)}>Nästa steg</Button>
                 </form>
             </section>
             <section>

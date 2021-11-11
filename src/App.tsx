@@ -1,11 +1,14 @@
 // import libaries
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   BrowserRouter as Router, 
   Switch,
   Route,
   useHistory
  } from 'react-router-dom';
+import ScrollToTop from 'react-scroll-to-top';
+import {ReactComponent as ArrowSVG} from "./images/arrow.svg";
+
 
 // import components
 import Nav from './components/Nav';
@@ -25,32 +28,56 @@ import Payment from './components/Payment';
 
 function App() {
 
+  const history = useHistory();
   const[user, setUser]: any = useState(null);
   const[subscriptionStatus, setSubscriptionStatus] = useState(false);
-  const[quantity, setQuantity] = useState(0);
+  const[quantity, setQuantity] = useState<number>(0);
   const[delivery, setDelivery] = useState("");
+  const[colorChoice, setColorChoice] = useState("")
 
+  const handleColorChoice = (colorChoice: string) => {
+    setColorChoice(colorChoice);
+  }
+  const handleQuantityChoice = (quantityChoice: number) => {
+    setQuantity(quantityChoice);
+  }
+  const handleDeliveryChoice = (deliveryChoice: string) => {
+    setDelivery(deliveryChoice);
+  }
+
+
+  // LOCAL STORAGE FOR CURRENT USER 
+  const currentUser = localStorage.getItem('currentUser');
+
+  useEffect(() => {
+    // if current user exist in localStorage, direct to account/subscription
+    // if not, direct to startpage
+    if (localStorage.getItem('currentUser') !== null) {
+      history.push('/account/subscription')
+      setUser(true);
+    } else {
+      history.push('/')
+    }
+  },[history])
   
+
   return (
     <div className='app'>
-      <Router>
           <Nav 
               user={user}
               setUser={setUser}/> 
           <Switch>
               <Route exact path='/'>
                   <Header /> 
+                  <ScrollToTop smooth top={200} component={<ArrowSVG />} />
                   <HowItWorks />
                   <Mission />
-                  <PickColor/>
-                  <PickQuantity quantity={quantity} />
+                  <PickColor colorChoice={handleColorChoice}/>
+                  <PickQuantity quantity={quantity} handleQuantityChoice={handleQuantityChoice}/>
                   {/* <Reviews /> */}
-
-                  <PickColor/>
+                  {/* <PickColor/> */}
+                  <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
                   <Payment/>
-
-                  <PickDelivery delivery={delivery} />
-
                   <AboutUs />
               </Route>
               <Route
@@ -64,7 +91,6 @@ function App() {
               </Route>
           </Switch>
           <Footer /> 
-      </Router>
     </div>
   );
 }
