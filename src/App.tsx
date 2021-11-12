@@ -25,6 +25,17 @@ import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
 import Payment from './components/Payment';
 
+interface ISubscription {
+  creationDate: Object,
+  color: string,
+  quantity: string,
+  delivery: string
+}
+interface IPurchase {
+  email: string,
+  subscriptionStatus: boolean,
+  subscription: ISubscription
+}
 
 function App() {
 
@@ -33,7 +44,8 @@ function App() {
   const[subscriptionStatus, setSubscriptionStatus] = useState(false);
   const[quantity, setQuantity] = useState<number>(0);
   const[delivery, setDelivery] = useState("");
-  const[colorChoice, setColorChoice] = useState("")
+  const[colorChoice, setColorChoice] = useState("");
+  const[currentSubscription, setCurrentSubscription] = useState({});
 
   const handleColorChoice = (colorChoice: string) => {
     setColorChoice(colorChoice);
@@ -44,7 +56,9 @@ function App() {
   const handleDeliveryChoice = (deliveryChoice: string) => {
     setDelivery(deliveryChoice);
   }
-
+  const handlePurchaseSubmit = (purchase: IPurchase) => {
+    setCurrentSubscription(purchase);
+  }
 
   // LOCAL STORAGE FOR CURRENT USER 
   const currentUser = localStorage.getItem('currentUser');
