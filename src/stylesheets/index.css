@@ -796,6 +796,11 @@ input {
   color: rgb(54, 83, 54);
 }
 
+.subscription-status.paused {
+  background-color: rgb(204, 167, 118);
+  color: rgb(77, 62, 44);
+}
+
 .subscription-info h1 {
   font-size: 40px;
 }
