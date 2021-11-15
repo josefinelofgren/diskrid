@@ -1,4 +1,5 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
 import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration
@@ -6,12 +7,51 @@ interface Props {
   subscriptionStatus: boolean; 
   currentUser: any; 
 }
+interface ISubscription {
+  creationDate: string,
+  color: string,
+  quantity: string,
+  delivery: string
+}
+interface IUser {
+  emaiL: string,
+  subscriptionStatus: boolean,
+  subscription: ISubscription
+}
 
 
 function SubscriptionInfo(props: Props) {
 
   const { subscriptionStatus, currentUser } = props;
 
+  const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
+
+  let month = undefined;
+  const deliveryOptions: number[] = [7, 14, 61];
+
+  useEffect(() => {
+    setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+  }, [])
+  
+  useEffect(() => {
+    if(subscriptionDetails){
+      const date: any = subscriptionDetails?.subscription.creationDate;
+      const delivery = subscriptionDetails?.subscription.delivery;
+      let nextDelivery = new Date();
+      console.log(typeof(delivery))
+      // nextDelivery.setDate(nextDelivery.getDate() + delivery);
+      console.log(nextDelivery.getDate() + 1);
+
+    }
+    
+    // month = displayMonth(date);
+    // console.log(month)
+  }, [subscriptionDetails])
+
+  const displayMonth = (subscriptionDate: any) => {
+    const month = new Date(subscriptionDate).toLocaleDateString('default', {month: 'short'});
+    return month;
+  }
   const endSubscription = (e:any) => {
     e.preventDefault();
     console.log("End subscription")
@@ -47,28 +87,36 @@ function SubscriptionInfo(props: Props) {
     e.preventDefault();
     console.log("Pause subscription")
   }
-
+  const testClick = () => {
+    console.log(subscriptionDetails?.subscriptionStatus);
+    console.log(subscriptionDetails?.subscription.creationDate);
+    const subDate: any = subscriptionDetails?.subscription.creationDate;
+    const date = new Date(subDate).toLocaleDateString();
+    console.log("date: ", date);
+    
+    
+  }
 
   return (
     <div className='subscription-info'>
       <Container fluid>
-          {subscriptionStatus && (
+          {subscriptionDetails?.subscriptionStatus && (
             <>
-            <div className='subscription-status is-active fw-bold'>
+            <div className='subscription-status is-active fw-bold' onClick={testClick}>
                Aktiv
             </div>
             <h3 className='fw-bold mt-4'>Nästa order skapas den</h3>
             <h1 className='fw-bold'>25 Nov, 2021</h1>
-            <p className='mb-4'>Leverans alt: <span className='fw-bold'>Varannan vecka</span></p>
+            <p className='mb-4'>Leverans alt: <span className='fw-bold'>{subscriptionDetails.subscription.delivery}</span></p>
             <Button className='mb-2 btn-transparent'>Ändra prenumeration</Button><br/>
             <Button className='mb-2 btn-transparent'>Hoppa över nästa leverans</Button><br/> 
             <Button onClick={e => pauseSubscription(e)} className='mb-2 btn-transparent'>Pausa prenumeration</Button><br/>
             <Button onClick={e => endSubscription(e)} className='mb-2 btn-transparent'>Avsluta prenumeration</Button>
             </>
           )}
-          {!subscriptionStatus && (
+          {!subscriptionDetails?.subscriptionStatus && (
             <>
-            <div className='subscription-status fw-bold'>
+            <div className='subscription-status fw-bold' onClick={testClick}>
                 Ej aktiv
             </div>
             <h1 className='fw-bold mt-4'>Äntligen har du hittat hit, vi har väntat på dig.</h1>
