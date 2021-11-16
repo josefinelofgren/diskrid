@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+
+import React from 'react';
+import {useEffect, useState} from 'react';
+
 import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration
@@ -6,15 +9,65 @@ interface Props {
   subscriptionStatus: boolean; 
   currentUser: any; 
 }
+interface ISubscription {
+  creationDate: string,
+  color: string,
+  quantity: string,
+  delivery: string
+}
+interface IUser {
+  emaiL: string,
+  subscriptionStatus: boolean,
+  subscription: ISubscription
+}
 
 
 function SubscriptionInfo(props: Props) {
 
   const { subscriptionStatus, currentUser } = props;
 
+
+  const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
+  const [nextDelivery, setNextDelivery] = useState<string>("");
+
+  let month = undefined;
+  const deliveryOptions: number[] = [7, 14, 61];
+
+  useEffect(() => {
+    setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+  }, [])
+  
+  useEffect(() => {
+    if(subscriptionDetails){
+      const date: any = subscriptionDetails?.subscription.creationDate;
+      let deliveryInterval:number = 0;
+
+      //Converts delivery choice to number of days. Note that 61 is an approximation and won't always be correct. But works for MVP purposes.
+      switch(subscriptionDetails?.subscription.delivery) {
+        case("Varje vecka"):
+          deliveryInterval = 7;
+          break;
+        case("Varannan vecka"):
+          deliveryInterval = 14;
+          break;
+        case("Varannan månad"):
+          deliveryInterval = 61;
+          break;
+      }
+      let calculatedNextDelivery = new Date();
+      calculatedNextDelivery.setDate(calculatedNextDelivery.getDate() + deliveryInterval);
+      setNextDelivery(calculatedNextDelivery.toLocaleDateString());
+    }
+    
+    
+  }, [subscriptionDetails])
+
+  
+
   const[subscription, setSubscription] = useState(true);
 
   // End subscription
+
   const endSubscription = (e:any) => {
     e.preventDefault();
     console.log("End subscription")
@@ -91,16 +144,17 @@ function SubscriptionInfo(props: Props) {
 
     })
   }
-
+  
 
   return (
     <div className='subscription-info'>
       <Container fluid>
-          {subscriptionStatus && (
+          {subscriptionDetails?.subscriptionStatus && (
             <>
             {subscription && (
               <div className='subscription-status is-active fw-bold'>
                Aktiv
+
                </div>
             )}
             {!subscription && (
@@ -110,9 +164,9 @@ function SubscriptionInfo(props: Props) {
             )}
             {subscription && (
             <>
-            <h3 className='fw-bold mt-4'>Nästa order skapas den</h3>
-            <h1 className='fw-bold'>25 Nov, 2021</h1>
-            <p className='mb-4'>Leverans alt: <span className='fw-bold'>Varannan vecka</span></p>
+            <h3 className='fw-bold mt-4'>Nästa order skickas</h3>
+            <h1 className='fw-bold'>{nextDelivery}</h1>
+            <p className='mb-4'>Leverans alt: <span className='fw-bold'>{subscriptionDetails.subscription.delivery}</span></p>
             </>
             )}
             {!subscription && (
@@ -121,6 +175,7 @@ function SubscriptionInfo(props: Props) {
             <p className='mb-4'>Återuppta din prenumeration för att få dina leveranser igen.</p>
             </>
             )}
+
             <Button className='mb-2 btn-transparent'>Ändra prenumeration</Button><br/>
             {subscription && (
               <>
@@ -135,7 +190,7 @@ function SubscriptionInfo(props: Props) {
             <Button onClick={e => endSubscription(e)} className='mb-2 btn-transparent'>Avsluta prenumeration</Button>
             </>
           )}
-          {!subscriptionStatus && (
+          {!subscriptionDetails?.subscriptionStatus && (
             <>
             <div className='subscription-status fw-bold'>
                 Ej aktiv
@@ -155,3 +210,7 @@ function SubscriptionInfo(props: Props) {
 }
 
 export default SubscriptionInfo;
+
+
+//TODO: keep working on the date sheit. Maybe use moment? Also, make sure to use correct picture in nextdeliveryinfo.tsx
+//Nu funkar det med tiden, kolla rad 43! Ändra tillbaka i servern så att delivery sparas som en ordsträng och inte en siffra och ha sedan en funktion i frontend som omvandlar strängen till en siffra.
