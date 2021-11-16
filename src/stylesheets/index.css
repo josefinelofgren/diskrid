@@ -60,6 +60,13 @@ h3 {
   color: rgb(77, 76, 76);
 }
 
+.navigate-back {
+  color: rgb(77, 76, 76) !important;
+  text-align: center !important;
+  font-size: 12px;
+  padding-top: 20px;
+}
+
 /* INPUTS */
 
 input {

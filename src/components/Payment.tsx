@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import StepIndicator from './StepIndicator';
+import { Link } from 'react-router-dom';
 
 interface Props {
     colorChoice: string,
@@ -107,6 +108,9 @@ const Payment = (props: Props) => {
                 </div>
                 <button className="btn-black btn checkout-button">SLUTFÖR KÖP</button>
             </form>
+            <section className='navigate-back'>
+              <Link to='step-3' className='navigate-back'>Tillbaka</Link>
+          </section>
         </div>
     );
 };

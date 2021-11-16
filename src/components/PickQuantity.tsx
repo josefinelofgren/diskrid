@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import StepIndicator from './StepIndicator';
+import { Link } from 'react-router-dom';
 
 interface Props {
     quantity: any;
@@ -56,9 +57,9 @@ const PickQuantity = (props: Props) => {
                     <Button className='btn-black steps-btn' type="submit" onClick={() => props.handleQuantityChoice(quantity)}>Nästa steg</Button>
                 </form>
             </section>
-            <section>
-                {/* TILLBAKA-KNAPP HÄR */}
-            </section>
+            <section className='navigate-back'>
+              <Link to='step-1' className='navigate-back'>Tillbaka</Link>
+          </section>
           </div>
         </Container>
     </div>

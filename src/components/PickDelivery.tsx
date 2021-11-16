@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Container, Card } from "react-bootstrap";
 import StepIndicator from './StepIndicator';
+import { Link } from 'react-router-dom';
 
 interface Props {
   delivery: any;
@@ -71,6 +72,9 @@ const PickDelivery = (props: Props) => {
           <Button className="btn-black steps-btn" type="submit" onClick={() => props.handleDeliveryChoice(delivery)}>
             Nästa steg
           </Button>
+          <section className='navigate-back'>
+              <Link to='step-2' className='navigate-back'>Tillbaka</Link>
+          </section>
         </section>
       </div>
     </Container>
