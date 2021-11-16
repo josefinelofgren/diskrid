@@ -25,6 +25,7 @@ function SubscriptionInfo(props: Props) {
   const { subscriptionStatus, currentUser } = props;
 
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
+  const [nextDelivery, setNextDelivery] = useState<string>("");
 
   let month = undefined;
   const deliveryOptions: number[] = [7, 14, 61];
@@ -36,22 +37,29 @@ function SubscriptionInfo(props: Props) {
   useEffect(() => {
     if(subscriptionDetails){
       const date: any = subscriptionDetails?.subscription.creationDate;
-      const delivery = subscriptionDetails?.subscription.delivery;
-      let nextDelivery = new Date();
-      console.log(typeof(delivery))
-      // nextDelivery.setDate(nextDelivery.getDate() + delivery);
-      console.log(nextDelivery.getDate() + 1);
+      let deliveryInterval:number = 0;
 
+      //Converts delivery choice to number of days. Note that 61 is an approximation and won't always be correct. But works for MVP purposes.
+      switch(subscriptionDetails?.subscription.delivery) {
+        case("Varje vecka"):
+          deliveryInterval = 7;
+          break;
+        case("Varannan vecka"):
+          deliveryInterval = 14;
+          break;
+        case("Varannan månad"):
+          deliveryInterval = 61;
+          break;
+      }
+      let calculatedNextDelivery = new Date();
+      calculatedNextDelivery.setDate(calculatedNextDelivery.getDate() + deliveryInterval);
+      setNextDelivery(calculatedNextDelivery.toLocaleDateString());
     }
     
-    // month = displayMonth(date);
-    // console.log(month)
+    
   }, [subscriptionDetails])
 
-  const displayMonth = (subscriptionDate: any) => {
-    const month = new Date(subscriptionDate).toLocaleDateString('default', {month: 'short'});
-    return month;
-  }
+  
   const endSubscription = (e:any) => {
     e.preventDefault();
     console.log("End subscription")
@@ -87,26 +95,18 @@ function SubscriptionInfo(props: Props) {
     e.preventDefault();
     console.log("Pause subscription")
   }
-  const testClick = () => {
-    console.log(subscriptionDetails?.subscriptionStatus);
-    console.log(subscriptionDetails?.subscription.creationDate);
-    const subDate: any = subscriptionDetails?.subscription.creationDate;
-    const date = new Date(subDate).toLocaleDateString();
-    console.log("date: ", date);
-    
-    
-  }
+  
 
   return (
     <div className='subscription-info'>
       <Container fluid>
           {subscriptionDetails?.subscriptionStatus && (
             <>
-            <div className='subscription-status is-active fw-bold' onClick={testClick}>
+            <div className='subscription-status is-active fw-bold'>
                Aktiv
             </div>
-            <h3 className='fw-bold mt-4'>Nästa order skapas den</h3>
-            <h1 className='fw-bold'>25 Nov, 2021</h1>
+            <h3 className='fw-bold mt-4'>Nästa order skickas</h3>
+            <h1 className='fw-bold'>{nextDelivery}</h1>
             <p className='mb-4'>Leverans alt: <span className='fw-bold'>{subscriptionDetails.subscription.delivery}</span></p>
             <Button className='mb-2 btn-transparent'>Ändra prenumeration</Button><br/>
             <Button className='mb-2 btn-transparent'>Hoppa över nästa leverans</Button><br/> 
@@ -116,7 +116,7 @@ function SubscriptionInfo(props: Props) {
           )}
           {!subscriptionDetails?.subscriptionStatus && (
             <>
-            <div className='subscription-status fw-bold' onClick={testClick}>
+            <div className='subscription-status fw-bold'>
                 Ej aktiv
             </div>
             <h1 className='fw-bold mt-4'>Äntligen har du hittat hit, vi har väntat på dig.</h1>
@@ -134,3 +134,7 @@ function SubscriptionInfo(props: Props) {
 }
 
 export default SubscriptionInfo;
+
+
+//TODO: keep working on the date sheit. Maybe use moment? Also, make sure to use correct picture in nextdeliveryinfo.tsx
+//Nu funkar det med tiden, kolla rad 43! Ändra tillbaka i servern så att delivery sparas som en ordsträng och inte en siffra och ha sedan en funktion i frontend som omvandlar strängen till en siffra.
