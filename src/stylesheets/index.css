@@ -191,6 +191,7 @@ input {
 
 .how-it-works {
   min-height: 100vh;
+  background-color: #f8f7f7;
 }
 
 .how-it-works-content {
@@ -202,8 +203,7 @@ input {
 }
 
 .how-it-works-steps {
-  margin-top: 70px;
-  margin-bottom: 40px;
+  padding: 50px 0 !important;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -215,10 +215,14 @@ input {
   margin-top: 20px;
 }
 
-.step {
-  width: 300px;
-  margin: 30px;
+
+@media screen and (max-width: 768px) { 
+  .step {
+    padding-bottom: 50px !important;
+  }
 }
+
+
 
 .circle {
   background-color: #333;
@@ -495,13 +499,17 @@ input {
 
 .about-us {
   height: auto;
-  padding: 15vh 0;
+  padding: 50px 0;
 }
 
 .about-us-content {
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.about-us-text {
+  padding: 20px 0 !important;
 }
 
 /* PICK QUANTITY */
@@ -513,7 +521,7 @@ input {
 .quantity-content {
   width: 100%;
   min-height: 100%;
-  padding: 15vh 0;
+  padding: 50px 0;
   text-align: center;
   position: relative;
 }
@@ -564,7 +572,7 @@ input {
 .delivery-content {
   width: 100%;
   min-height: 100%;
-  padding: 15vh 0;
+  padding: 50px 0;
   text-align: center;
 }
 
@@ -731,6 +739,7 @@ input {
 /* PICK COLOR */
 .pick-color{
   height: 100vh;
+  padding: 50px 0;
 }
 .pick-color-content{
   display: flex;
@@ -891,6 +900,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 50px 0;
 }
 .payment-info{
   width: 100%;
