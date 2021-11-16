@@ -25,7 +25,7 @@ function NextDeliveryInfo() {
   return (
     <div className='next-delivery-info'>
         <Container fluid> 
-            <h3 className='fw-bold'>Din nästa leverans:</h3>
+            <h3 className='fw-bold'>Din prenumeration:</h3>
             <section className='order'>
                 <figure>
                     <img src={require('../../../images/disktrasa2.jpg').default} alt='Ordered item'/>
@@ -38,8 +38,10 @@ function NextDeliveryInfo() {
             <div className='grid'>
                 <h5 className='fw-bold'>Leverans</h5>
                 <h5 className='fw-bold right'>Gratis</h5>
-                <h4 className='fw-bold'>Totalt idag</h4>
+
+                <h4 className='fw-bold'>Totalt</h4>
                 <h4 className='fw-bold right'>{subscriptionDetails?.subscription.quantity? parseInt(subscriptionDetails?.subscription.quantity) * 29 : null} SEK</h4>
+
             </div>
         </Container>
     </div>
