@@ -111,17 +111,17 @@ function SubscriptionInfo() {
     console.log("Resume subscription")
     setSubscription(true);
 
-    let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     const date = new Date();
 
+    if(subscriptionDetails){
     let updateSubscription = {
-      email: currentUser.email,
-      subscriptionStatus: currentUser.subscriptionStatus,
+      email: subscriptionDetails.email,
+      subscriptionStatus: subscriptionDetails.subscriptionStatus,
       subscription: {
         creationDate: date,
-        color: currentUser.subscription.color,
-        quantity: currentUser.subscription.quantity,
-        delivery: currentUser.subscription.delivery,
+        color: subscriptionDetails.subscription.color,
+        quantity: subscriptionDetails.subscription.quantity,
+        delivery: subscriptionDetails.subscription.delivery,
       },
     }
     console.log(updateSubscription);
@@ -141,8 +141,9 @@ function SubscriptionInfo() {
     // current user to localStorage
     localStorage.setItem('currentUser', JSON.stringify(result));
     JSON.parse(localStorage.getItem('currentUser') || '{}');
-
+    setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
     })
+  }
   }
   
 
