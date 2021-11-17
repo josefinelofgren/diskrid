@@ -819,6 +819,9 @@ input {
 }
 
 /* SUBSCRIPTION INFO */ 
+.new-account {
+  margin: 0 auto;
+}
 .subscription-info {
   width: 100%;
   max-width: 450px;
