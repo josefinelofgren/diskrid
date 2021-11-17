@@ -4,11 +4,9 @@ import {useEffect, useState} from 'react';
 import NextDeliveryInfo from './NextDeliveryInfo';
 
 import { Container, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 // inloggad användare kan se sin prenumeration
-interface Props {
-  currentUser: any; 
-}
 
 interface ISubscription {
   creationDate: string,
@@ -16,17 +14,17 @@ interface ISubscription {
   quantity: string,
   delivery: string
 }
+
 interface IUser {
-  emaiL: string,
+  email: string,
   subscriptionStatus: boolean,
   subscription: ISubscription
 }
 
 
-function SubscriptionInfo(props: Props) {
+function SubscriptionInfo() {
 
-  const { currentUser } = props;
-
+  let history = useHistory();
 
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
   const [nextDelivery, setNextDelivery] = useState<string>("");
@@ -73,11 +71,14 @@ function SubscriptionInfo(props: Props) {
     e.preventDefault();
     console.log("End subscription")
 
+    if(subscriptionDetails){
     let updateSubscription = {
-      email: currentUser.email,
+      email: subscriptionDetails.email,
       subscriptionStatus: false,
       subscription: {},
+
     }
+
     console.log(updateSubscription);
 
       // fetch data from db
@@ -96,7 +97,10 @@ function SubscriptionInfo(props: Props) {
       localStorage.setItem('currentUser', JSON.stringify(result));
       JSON.parse(localStorage.getItem('currentUser') || '{}');
 
+      history.push('/account/subscription');
+
       })
+    }
   }
 
   // Pause subscription
@@ -117,7 +121,7 @@ function SubscriptionInfo(props: Props) {
 
     let updateSubscription = {
       email: currentUser.email,
-      subscriptionStatus: false,
+      subscriptionStatus: currentUser.subscriptionStatus,
       subscription: {
         creationDate: date,
         color: currentUser.subscription.color,

@@ -115,10 +115,7 @@ function App() {
               <Route
                   path='/account/subscription'>
                   <div className='subscription'>
-                      <SubscriptionInfo currentUser={currentUser}/> 
-                      {/* {subscriptionStatus && (
-                        <NextDeliveryInfo /> 
-                      )} */}
+                      <SubscriptionInfo/> 
                   </div>
               </Route>
           </Switch>
