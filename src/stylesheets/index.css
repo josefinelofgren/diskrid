@@ -603,7 +603,13 @@ input {
   flex-shrink: 0;
   cursor: pointer;
 }
-
+.delivery-box:hover {
+  color:rgba(0, 0, 0, 0.6) !important;
+}
+.selected-delivery {
+  background-color: #333333 !important;
+  color: white;
+}
 .card-title {
   text-transform: uppercase;
 }
@@ -798,7 +804,7 @@ input {
 }
 
 .selected-color {
-  background-color: rgba(232, 235, 232, 0.8);
+  background-color: rgba(51, 51, 51, 0.8);
 }
 
 .color-hover-div:hover {

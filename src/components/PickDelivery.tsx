@@ -47,7 +47,7 @@ const PickDelivery = (props: Props) => {
           <section className="delivery-boxes">{deliveryOptions.map(option => {
             return(
               <Card
-              className="delivery-box stretched-link"
+              className={`delivery-box stretched-link ${option.title === delivery ? "selected-delivery" : ""}`}
               id={option.id}
               onClick={() => setDelivery(option.title)}
               key={option.id}
