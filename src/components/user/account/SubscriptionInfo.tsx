@@ -1,32 +1,31 @@
 
 import React from 'react';
 import {useEffect, useState} from 'react';
+import NextDeliveryInfo from './NextDeliveryInfo';
 
 import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration
 interface Props {
   subscriptionStatus: boolean,
-  currentUser: any,
   newAccount: string|undefined
 }
+
 interface ISubscription {
   creationDate: string,
   color: string,
   quantity: string,
   delivery: string
 }
+
 interface IUser {
-  emaiL: string,
+  email: string,
   subscriptionStatus: boolean,
   subscription: ISubscription
 }
 
 
 function SubscriptionInfo(props: Props) {
-
-  const { subscriptionStatus, currentUser } = props;
-
 
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
   const [nextDelivery, setNextDelivery] = useState<string>("");
@@ -73,11 +72,14 @@ function SubscriptionInfo(props: Props) {
     e.preventDefault();
     console.log("End subscription")
 
+    if(subscriptionDetails){
     let updateSubscription = {
-      email: currentUser.email,
+      email: subscriptionDetails.email,
       subscriptionStatus: false,
       subscription: {},
+
     }
+
     console.log(updateSubscription);
 
       // fetch data from db
@@ -95,8 +97,9 @@ function SubscriptionInfo(props: Props) {
       // current user to localStorage
       localStorage.setItem('currentUser', JSON.stringify(result));
       JSON.parse(localStorage.getItem('currentUser') || '{}');
-
+      setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
       })
+    }
   }
 
   // Pause subscription
@@ -112,17 +115,17 @@ function SubscriptionInfo(props: Props) {
     console.log("Resume subscription")
     setSubscription(true);
 
-    let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     const date = new Date();
 
+    if(subscriptionDetails){
     let updateSubscription = {
-      email: currentUser.email,
-      subscriptionStatus: false,
+      email: subscriptionDetails.email,
+      subscriptionStatus: subscriptionDetails.subscriptionStatus,
       subscription: {
         creationDate: date,
-        color: currentUser.subscription.color,
-        quantity: currentUser.subscription.quantity,
-        delivery: currentUser.subscription.delivery,
+        color: subscriptionDetails.subscription.color,
+        quantity: subscriptionDetails.subscription.quantity,
+        delivery: subscriptionDetails.subscription.delivery,
       },
     }
     console.log(updateSubscription);
@@ -142,12 +145,14 @@ function SubscriptionInfo(props: Props) {
     // current user to localStorage
     localStorage.setItem('currentUser', JSON.stringify(result));
     JSON.parse(localStorage.getItem('currentUser') || '{}');
-
+    setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
     })
+  }
   }
   
 
   return (
+    <>
     <div className='subscription-info'>
       <Container fluid>
           {subscriptionDetails?.subscriptionStatus && (
@@ -209,6 +214,10 @@ function SubscriptionInfo(props: Props) {
           )}
       </Container>
     </div>
+    {subscriptionDetails?.subscriptionStatus && (
+    <NextDeliveryInfo /> 
+    )}
+    </>
   );
 }
 
