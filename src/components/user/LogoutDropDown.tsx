@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 interface Props {
   setUserDropDown: (userDropDown: boolean) => void;
+  setUser: any;
 }
 
 function LogoutDropDown(props: Props) {
@@ -11,7 +12,7 @@ function LogoutDropDown(props: Props) {
   let history = useHistory();
   let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
-  const { setUserDropDown } = props;
+  const { setUserDropDown, setUser } = props;
 
   // Log out user on button click and clear local storage
 
@@ -21,6 +22,7 @@ function LogoutDropDown(props: Props) {
     localStorage.removeItem('currentUser');
     history.push('/');
     setUserDropDown(false);
+    setUser(null);
   }
 
   return (
