@@ -210,7 +210,3 @@ function SubscriptionInfo(props: Props) {
 }
 
 export default SubscriptionInfo;
-
-
-//TODO: keep working on the date sheit. Maybe use moment? Also, make sure to use correct picture in nextdeliveryinfo.tsx
-//Nu funkar det med tiden, kolla rad 43! Ändra tillbaka i servern så att delivery sparas som en ordsträng och inte en siffra och ha sedan en funktion i frontend som omvandlar strängen till en siffra.

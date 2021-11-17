@@ -1,15 +1,26 @@
 import React from 'react';
 import {useState} from 'react';
 import StepIndicator from './StepIndicator';
+
+import {useHistory} from 'react-router-dom';
+const generator = require('generate-password');
+
 import { Link } from 'react-router-dom';
+
 
 interface Props {
     colorChoice: string,
     quantity: number,
     delivery: string
+    user: string|null,
+    setUser: any,
 }
 
 const Payment = (props: Props) => {
+
+    const loggedInUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    
+    const history = useHistory();
 
     const [details, setDetails] = useState({
         fName: "",
@@ -17,7 +28,7 @@ const Payment = (props: Props) => {
         street: "",
         zip: "",
         city: "",
-        email: ""
+        email: "",
     })
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +41,11 @@ const Payment = (props: Props) => {
     const submitOrder = (e: any) => {
         e.preventDefault();
         
+        const newPassword = generator.generate({
+            length: 10,
+            numbers: true
+          });
+
         fetch("http://localhost:4000/users/submit", {
             method: "POST",
             headers: {
@@ -37,6 +53,7 @@ const Payment = (props: Props) => {
             },
             body: JSON.stringify({
                 email: details.email,
+                password: newPassword,
                 color: props.colorChoice,
                 quantity: props.quantity,
                 delivery: props.delivery
@@ -45,7 +62,27 @@ const Payment = (props: Props) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            
+            fetch("http://localhost:4000/users/log-in", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email: details.email, password: newPassword}),
+    })
+    .then(res => res.json())
+    .then(result => {  
+        
+        props.setUser(true)
+        console.log(result)
+
+        // naviagate to users subscription
+        history.push('/account/subscription');
+
+        // current user to localStorage
+        localStorage.setItem('currentUser', JSON.stringify(result));
+        JSON.parse(localStorage.getItem('currentUser') || '{}');
+      
+    })
         })
     }
 
