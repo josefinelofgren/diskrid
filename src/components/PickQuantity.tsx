@@ -12,6 +12,8 @@ const PickQuantity = (props: Props) => {
 
     let [quantity, setQuantity] = useState(0);
 
+    const quantityValues: number[] = [1, 5, 10];
+
     const handleSubmit = (e:any) => {
       e.preventDefault();
       console.log("Form submitted with quantity: " + quantity)
@@ -26,12 +28,12 @@ const PickQuantity = (props: Props) => {
         }
     }
 
-    const handleClick = (e:any) => {
-        let selectedQuantity = e.target.id;
-        console.log("Clicked on circle with quantity: " + selectedQuantity);
+    // const handleClick = (e:any) => {
+    //     let selectedQuantity = e.target.id;
+    //     console.log("Clicked on circle with quantity: " + selectedQuantity);
         
-        setQuantity(selectedQuantity);
-    }
+    //     setQuantity(selectedQuantity);
+    // }
   
   return (
     <div className='quantity'>
@@ -40,10 +42,14 @@ const PickQuantity = (props: Props) => {
           <h2 className="page-indicator">STEG 2/4</h2>
           <StepIndicator selectedPage="Välj antal"/>
             <h2>Hur många disktrasor vill du ha i din leverans?</h2>
-            <section className="quantity-circles">
-                <div className="quantity-circle" id="1" onClick={e => handleClick(e)}>1</div>
+            <section className="quantity-circles">{quantityValues.map(value => {
+              return (
+                <div className={`quantity-circle ${value === quantity ? "selected-quantity" : ""}`} onClick={e => setQuantity(value)} key={value}>{value}</div>
+              )
+            })}
+                {/* <div className={`quantity-circle ${}`} id="1" onClick={e => handleClick(e)}>1</div>
                 <div className="quantity-circle" id="5" onClick={e => handleClick(e)}>5</div>
-                <div className="quantity-circle" id="10" onClick={e => handleClick(e)}>10</div>
+                <div className="quantity-circle" id="10" onClick={e => handleClick(e)}>10</div> */}
             </section>
             <section>
                 <p>...eller fyll i valfritt antal:</p>
