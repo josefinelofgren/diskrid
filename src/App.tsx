@@ -100,7 +100,7 @@ function App() {
                               <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
                           </Route>
                           <Route path='/step-4'>
-                              <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity}/>
+                              <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser}/>
                           </Route>
                       </Switch>
                   <HowItWorks />

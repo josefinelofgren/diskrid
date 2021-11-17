@@ -1,11 +1,11 @@
 import React from 'react';
 import {useState} from 'react';
 import StepIndicator from './StepIndicator';
+import { Link } from 'react-router-dom';
 
 import {useHistory} from 'react-router-dom';
 const generator = require('generate-password');
 
-import { Link } from 'react-router-dom';
 
 
 interface Props {
