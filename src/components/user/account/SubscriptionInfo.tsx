@@ -6,9 +6,9 @@ import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration
 interface Props {
-  subscriptionStatus: boolean; 
   currentUser: any; 
 }
+
 interface ISubscription {
   creationDate: string,
   color: string,
@@ -24,7 +24,7 @@ interface IUser {
 
 function SubscriptionInfo(props: Props) {
 
-  const { subscriptionStatus, currentUser } = props;
+  const { currentUser } = props;
 
 
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();

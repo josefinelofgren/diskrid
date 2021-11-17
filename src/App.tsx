@@ -68,6 +68,7 @@ function App() {
 
   useEffect(() => {
     console.log(currentUser)
+    setSubscriptionStatus(currentUser.subscriptionStatus);
     // if current user exist in localStorage, direct to account/subscription
     // if not, direct to startpage
     if (localStorage.getItem('currentUser') !== null) {
@@ -116,7 +117,7 @@ function App() {
               <Route
                   path='/account/subscription'>
                   <div className='subscription'>
-                      <SubscriptionInfo subscriptionStatus={subscriptionStatus} currentUser={currentUser}/> 
+                      <SubscriptionInfo currentUser={currentUser}/> 
                       {subscriptionStatus && (
                         <NextDeliveryInfo /> 
                       )}
