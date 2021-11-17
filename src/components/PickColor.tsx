@@ -52,9 +52,11 @@ const PickColor = (props: Props) => {
                     </article>
                     <div className="color-choice-wrapper">{pictureArray.map((picture, index) => {
                         return(
-
-                            <img className={`border border-dark rounded-circle color-choice ${pickedColor === picture.color ? "selectedColor" : ""}`} key={picture.source} src={picture.source} onClick={() => setPickedColor(picture.color)}></img>
-
+                            <div className={`color-img-wrapper`} key={picture.source}>
+                                <div className={`color-hover-div ${pickedColor === picture.color ? "selected-color" : ""}`} onClick={() => setPickedColor(picture.color)}></div>
+                                <img className={`border border-dark rounded-circle color-choice`} src={picture.source}/>
+                                
+                            </div>
                         )
                     })}</div>
                     <button className="btn-black btn" onClick={()=> props.colorChoice(pickedColor)}>nästa steg</button>
