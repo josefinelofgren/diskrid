@@ -6,6 +6,10 @@ import NextDeliveryInfo from './NextDeliveryInfo';
 import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration
+interface Props {
+  subscriptionStatus: boolean,
+  newAccount: string|undefined
+}
 
 interface ISubscription {
   creationDate: string,
@@ -21,7 +25,7 @@ interface IUser {
 }
 
 
-function SubscriptionInfo() {
+function SubscriptionInfo(props: Props) {
 
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
   const [nextDelivery, setNextDelivery] = useState<string>("");
@@ -166,6 +170,8 @@ function SubscriptionInfo() {
             )}
             {subscription && (
             <>
+            {props.newAccount ? <div className="alert alert-primary new-account" role="alert">Dina kontouppgifter med ett tillfälligt lösenord har skickats till {props.newAccount}</div>
+              : null}
             <h3 className='fw-bold mt-4'>Nästa order skickas</h3>
             <h1 className='fw-bold'>{nextDelivery}</h1>
             <p className='mb-4'>Leverans alt: <span className='fw-bold'>{subscriptionDetails.subscription.delivery}</span></p>

@@ -14,6 +14,7 @@ interface Props {
     delivery: string
     user: string|null,
     setUser: any,
+    handleNewAccount: (account: string) => void
 }
 
 const Payment = (props: Props) => {
@@ -45,7 +46,8 @@ const Payment = (props: Props) => {
             length: 10,
             numbers: true
           });
-
+        
+        props.handleNewAccount(details.email);
         fetch("http://localhost:4000/users/submit", {
             method: "POST",
             headers: {

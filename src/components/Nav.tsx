@@ -136,7 +136,7 @@ const toggleSignUpContent = () => {
           {!userLoggedIn ? <LogInDropDown 
               toggleSignUpContent={toggleSignUpContent} 
               setUserDropDown={setUserDropDown}
-              setUser={setUser}/> : <LogOutDropDown setUserDropDown={setUserDropDown}/> }
+              setUser={setUser}/> : <LogOutDropDown setUser={setUser} setUserDropDown={setUserDropDown}/> }
           </>
         )}
         {signUpContent && (
