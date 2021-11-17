@@ -7,24 +7,35 @@ interface Props {
   delivery: any;
   handleDeliveryChoice: (deliveryChoice: string) => void
 }
+interface IDelivery {
+  id: string
+  title: string,
+  text: string
+}
 
 const PickDelivery = (props: Props) => {
   let [delivery, setDelivery] = useState("");
 
-  const handleClick = (e: any) => {
-    let selectedDelivery = ""!;
+  const deliveryOptions: IDelivery[] = [
+    {id: "1", title: "Varje vecka", text: "Jag använder min disktrasa flitigt och torkar mycket mjölkspill"},
+    {id: "2", title: "Varannan vecka", text: "Jag använder min disktrasa måttligt och behöver en fräsch med jämna mellanrum."},
+    {id: "3", title: "Varannan månad", text: "Jag använder min disktrasa sällan men behöver bli påmind att byta ut den ibland."}
+  ]
 
-    if (e.target.id === "01") {
-      selectedDelivery = "Varje vecka";
-    } else if (e.target.id === "02") {
-      selectedDelivery = "Varannan vecka";
-    } else if (e.target.id === "03") {
-      selectedDelivery = "Varannan månad";
-    }
+  // const handleClick = (e: any) => {
+  //   let selectedDelivery = ""!;
 
-    console.log("Selected delivery: " + selectedDelivery);
-    setDelivery(selectedDelivery);
-  };
+  //   if (e.target.id === "01") {
+  //     selectedDelivery = "Varje vecka";
+  //   } else if (e.target.id === "02") {
+  //     selectedDelivery = "Varannan vecka";
+  //   } else if (e.target.id === "03") {
+  //     selectedDelivery = "Varannan månad";
+  //   }
+
+  //   console.log("Selected delivery: " + selectedDelivery);
+  //   setDelivery(selectedDelivery);
+  // };
 
   return (
     <Container fluid>
@@ -33,9 +44,23 @@ const PickDelivery = (props: Props) => {
         <h2 className="page-indicator">STEG 3/4</h2>
           <StepIndicator selectedPage="Välj hur ofta"/>
           <h2>Hur ofta vill du ha din leverans?</h2>
-          <section className="delivery-boxes">
+          <section className="delivery-boxes">{deliveryOptions.map(option => {
+            return(
+              <Card
+              className="delivery-box stretched-link"
+              id={option.id}
+              onClick={() => setDelivery(option.title)}
+              key={option.id}
+            >
+              <Card.Body>
+                <Card.Title className="card-title">{option.title}</Card.Title>
+                <Card.Text>{option.text}</Card.Text>
+              </Card.Body>
+            </Card>
+            )
+          })}
 
-            <Card
+            {/* <Card
               className="delivery-box stretched-link"
               id="01"
               onClick={(e) => handleClick(e)}
@@ -66,7 +91,7 @@ const PickDelivery = (props: Props) => {
                 <Card.Title className="card-title">Varannan månad</Card.Title>
                 <Card.Text>Jag använder min disktrasa sällan men behöver bli påmind att byta ut den ibland.</Card.Text>
               </Card.Body>
-            </Card>
+            </Card> */}
           </section>
 
           <Button className="btn-black steps-btn" type="submit" onClick={() => props.handleDeliveryChoice(delivery)}>
