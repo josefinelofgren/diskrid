@@ -4,7 +4,6 @@ import {useEffect, useState} from 'react';
 import NextDeliveryInfo from './NextDeliveryInfo';
 
 import { Container, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
 
 // inloggad användare kan se sin prenumeration
 
@@ -23,8 +22,6 @@ interface IUser {
 
 
 function SubscriptionInfo() {
-
-  let history = useHistory();
 
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
   const [nextDelivery, setNextDelivery] = useState<string>("");
@@ -96,9 +93,7 @@ function SubscriptionInfo() {
       // current user to localStorage
       localStorage.setItem('currentUser', JSON.stringify(result));
       JSON.parse(localStorage.getItem('currentUser') || '{}');
-
-      history.push('/account/subscription');
-
+      setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
       })
     }
   }
