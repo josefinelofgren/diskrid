@@ -46,6 +46,7 @@ function App() {
   const[delivery, setDelivery] = useState("");
   const[colorChoice, setColorChoice] = useState("");
   const[currentSubscription, setCurrentSubscription] = useState({});
+  const[newAccount, setNewAccount] = useState<string|undefined>(undefined);
 
   const handleColorChoice = (colorChoice: string) => {
     setColorChoice(colorChoice);
@@ -62,7 +63,9 @@ function App() {
   const handlePurchaseSubmit = (purchase: IPurchase) => {
     setCurrentSubscription(purchase);
   }
-
+  const handleNewAccount = (account: string) => {
+    setNewAccount(account);
+  }
   // LOCAL STORAGE FOR CURRENT USER
   let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
@@ -100,7 +103,7 @@ function App() {
                               <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
                           </Route>
                           <Route path='/step-4'>
-                              <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser}/>
+                              <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser} handleNewAccount={handleNewAccount}/>
                           </Route>
                       </Switch>
                   <HowItWorks />
@@ -108,15 +111,15 @@ function App() {
                   {/* <Reviews /> */}
 
                   {/* <PickColor/> */}
-                  <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
-                  <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser}/>
+                  {/* <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
+                  <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser}/> */}
 
                   <AboutUs />
               </Route>
               <Route
                   path='/account/subscription'>
                   <div className='subscription'>
-                      <SubscriptionInfo subscriptionStatus={subscriptionStatus} currentUser={currentUser}/> 
+                      <SubscriptionInfo subscriptionStatus={subscriptionStatus} currentUser={currentUser} newAccount={newAccount}/> 
                       {subscriptionStatus && (
                         <NextDeliveryInfo /> 
                       )}
