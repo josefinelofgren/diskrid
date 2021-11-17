@@ -1,6 +1,7 @@
 
 import React from 'react';
 import {useEffect, useState} from 'react';
+import NextDeliveryInfo from './NextDeliveryInfo';
 
 import { Container, Button } from 'react-bootstrap';
 
@@ -147,6 +148,7 @@ function SubscriptionInfo(props: Props) {
   
 
   return (
+    <>
     <div className='subscription-info'>
       <Container fluid>
           {subscriptionDetails?.subscriptionStatus && (
@@ -206,6 +208,10 @@ function SubscriptionInfo(props: Props) {
           )}
       </Container>
     </div>
+    {subscriptionDetails?.subscriptionStatus && (
+    <NextDeliveryInfo /> 
+    )}
+    </>
   );
 }
 

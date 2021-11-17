@@ -22,7 +22,7 @@ import Reviews from './components/Reviews';
 import PickDelivery from './components/PickDelivery';
 import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
-import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
+// import NextDeliveryInfo from './components/user/account/NextDeliveryInfo';
 import Payment from './components/Payment';
 
 interface ISubscription {
@@ -67,8 +67,6 @@ function App() {
   let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
   useEffect(() => {
-    console.log(currentUser)
-    setSubscriptionStatus(currentUser.subscriptionStatus);
     // if current user exist in localStorage, direct to account/subscription
     // if not, direct to startpage
     if (localStorage.getItem('currentUser') !== null) {
@@ -118,9 +116,9 @@ function App() {
                   path='/account/subscription'>
                   <div className='subscription'>
                       <SubscriptionInfo currentUser={currentUser}/> 
-                      {subscriptionStatus && (
+                      {/* {subscriptionStatus && (
                         <NextDeliveryInfo /> 
-                      )}
+                      )} */}
                   </div>
               </Route>
           </Switch>
