@@ -40,11 +40,11 @@ const PickColor = (props: Props) => {
 
 
     return (
+        <div className="pick-color" id='pickColor'>
         <Container fluid>
-            <div className="pick-color" id='pickColor'>
                 <section className="pick-color-content">
                     <article className="pick-color-text">
-                        <h2 className="page-indicator">STEG 1/4</h2>
+                        <h1 className="page-indicator">STEG 1/4</h1>
                         <StepIndicator selectedPage="Välj färg"/>
                         <p><strong>Startpaket från 29 SEK/mån</strong></p>
                         <p className="rag-attributes"><span>Miljövänlig</span><span>Tvättbar</span><span>Hållbar</span></p>
@@ -62,8 +62,8 @@ const PickColor = (props: Props) => {
                     <button className="btn-black btn" onClick={()=> props.colorChoice(pickedColor)}>nästa steg</button>
 
                 </section>
-            </div>
         </Container>
+        </div>
     );
 };
 

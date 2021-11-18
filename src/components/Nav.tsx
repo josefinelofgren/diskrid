@@ -67,13 +67,11 @@ const toggleSignUpContent = () => {
           Diskrid
         </Navbar.Brand>
         <div className='navbar-icons'>
-          <span>
-            <FiUser
-            onClick={toggleUserDropDown}/>
+          <span onClick={toggleUserDropDown}>
+            <FiUser/>
           </span>
-          <span>
-            <FiShoppingBag 
-            onClick={toggleShoppingCart}/> 
+          <span onClick={toggleShoppingCart}>
+            <FiShoppingBag /> 
           </span>
         </div>
       </Container>

@@ -91,7 +91,7 @@ const Payment = (props: Props) => {
     return (
         <div className="payment">
             <article className="payment-info">
-                <h4 className="page-indicator">STEG 4/4</h4>
+                <h1 className="page-indicator">STEG 4/4</h1>
                 <StepIndicator selectedPage="Checka ut"/>
                 <h2>Checka ut din beställning</h2>
             </article>

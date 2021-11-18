@@ -7,7 +7,7 @@ function HowItWorks() {
       <Container fluid>
           <div className='how-it-works-content'>
               <h3>Så funkar det</h3>
-            <h2>Hur funkar DISKRID?</h2>
+            <h1>Hur funkar DISKRID?</h1>
             <Row className='how-it-works-steps'>
               <Col md='4'>
                 <article className="step">
