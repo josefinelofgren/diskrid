@@ -1,6 +1,6 @@
 # Assignment: "Diskrid"
 
-This app uses mongoDB Atlas as a database. The application is deployed at ... You will find the back end application [here]().
+This app uses mongoDB Atlas as a database. The application is deployed at ... You will find the back end application [here](https://github.com/josefinelofgren/diskrid-backend).
 
 ## Run app live 
 
@@ -16,3 +16,9 @@ Visit: []()
 - react-router-dom
 - react-bootstrap
 - react-icons
+- react-scroll
+- axios
+- generate-password
+- react-responsive-carousel
+- react-slick
+- typescript
