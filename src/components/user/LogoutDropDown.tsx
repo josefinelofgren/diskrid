@@ -20,7 +20,7 @@ function LogoutDropDown(props: Props) {
     e.preventDefault();
     console.log('Log out and clear local storage');
     localStorage.removeItem('currentUser');
-    history.push('/');
+    history.push('/diskrid/');
     setUserDropDown(false);
     setUser(null);
   }

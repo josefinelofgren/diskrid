@@ -88,19 +88,19 @@ function App() {
                   <Header /> 
                   <ScrollToTop smooth top={200} component={<ArrowSVG />} />
                       <Switch>
-                          <Route exact path='/'>
+                          <Route exact path='/diskrid/'>
                             <PickColor colorChoice={handleColorChoice}/>
                           </Route>
-                          <Route exact path='/step-1'>
+                          <Route exact path='/diskrid/step-1'>
                             <PickColor colorChoice={handleColorChoice}/>
                           </Route>
-                          <Route path='/step-2'>
+                          <Route path='/diskrid/step-2'>
                               <PickQuantity quantity={quantity} handleQuantityChoice={handleQuantityChoice}/>
                           </Route>
-                          <Route path='/step-3'>
+                          <Route path='/diskrid/step-3'>
                               <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
                           </Route>
-                          <Route path='/step-4'>
+                          <Route path='/diskrid/step-4'>
                               <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser} handleNewAccount={handleNewAccount}/>
                           </Route>
                       </Switch>
@@ -110,7 +110,7 @@ function App() {
                   <Reviews />
               </Route>
               <Route
-                  path='/account/subscription'>
+                  path='/diskrid/account/subscription'>
                   <div className='subscription'>
                       <SubscriptionInfo subscriptionStatus={subscriptionStatus} newAccount={newAccount}/> 
                   </div>

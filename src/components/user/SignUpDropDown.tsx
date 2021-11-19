@@ -68,7 +68,7 @@ function SignUpDropDown(props: Props) {
         console.log(result)
         localStorage.setItem('currentUser', JSON.stringify(result));
         JSON.parse(localStorage.getItem('currentUser') || '{}');
-        history.push('/account/subscription');
+        history.push('/diskrid/account/subscription');
       }
     })
 
