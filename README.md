@@ -12,6 +12,9 @@ Visit: []()
 - run "npm i" in terminal to install required packages.
 - run the project by using "npm start" in terminal
 
+### API 
+ReviewAPI - https://app.reviewapi.io/
+
 ### Packages
 - react-router-dom
 - react-dom
