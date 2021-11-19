@@ -921,7 +921,7 @@ input {
 /* REVIEWS */ 
 
 .reviews {
-  background-color: #f1f1f1;
+  background-color: #f5f3ef;
   padding: 50px 0;
 }
 
@@ -947,6 +947,11 @@ input {
 .review-content .name {
   color: grey;
   font-size: 12px;
+}
+
+.review {
+  max-height: 200px;
+  overflow: scroll;
 }
 
 

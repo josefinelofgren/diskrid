@@ -53,13 +53,14 @@ function Reviews() {
   const handleError = useErrorHandler();
 
   const callAPI = () => {
-      const result = fetch('https://app.reviewapi.io/api/v1/reviews?apikey=c207c390-3bb9-11ec-9595-952f3e04e0b0&url=https%3A%2F%2Fwww.capterra.com%2Fp%2F140650%2FRecruitee&amount=8')
+      const result = fetch('https://app.reviewapi.io/api/v1/reviews?apikey=296c46e0-491d-11ec-8ad2-090a7e801a22&url=https%3A%2F%2Fwww.trustpilot.com%2Freview%2Festrid.com&amount=15')
       .then((response) => response.json(),
             (error) => handleError(error))
             .then((data) => {
                 setReviews(data.reviews);
             });
             return result;
+            console.log(result)
   }
 
   useEffect(() => {
@@ -77,14 +78,14 @@ function Reviews() {
            <div className='review-content' key={i}>
            <div className='grid'>
                <div className='stars'>
-                   {review.rating}
+                   Betyg: <span className='fw-bold'>{review.rating}</span>
                </div>
                <div className='date right'>
                    {review.timestamp}
                </div>
            </div>
            <div className='review'>
-               {review.platform_specific.cons}
+               {review.text}
            </div>
            <div className='name'>
                {review.user_name}
