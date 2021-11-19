@@ -106,8 +106,8 @@ function App() {
                       </Switch>
                   <HowItWorks />
                   <Mission />
-                  {/* <Reviews /> */}
                   <AboutUs />
+                  {/* <Reviews /> */}
               </Route>
               <Route
                   path='/account/subscription'>
