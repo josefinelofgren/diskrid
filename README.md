@@ -14,11 +14,15 @@ Visit: []()
 
 ### Packages
 - react-router-dom
+- react-dom
 - react-bootstrap
+- bootstrap
 - react-icons
 - react-scroll
+- react-scroll-to-top
 - axios
 - generate-password
-- react-responsive-carousel
+- react-error-boundary
 - react-slick
+- slick-carousel
 - typescript
