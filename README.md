@@ -1,10 +1,10 @@
 # Assignment: "Diskrid"
 
-This app uses mongoDB Atlas as a database. The application is deployed at ... You will find the back end application [here](https://github.com/josefinelofgren/diskrid-backend).
+This app uses mongoDB Atlas as a database. The application is deployed at Github Pages. You will find the back end application [here](https://github.com/josefinelofgren/diskrid-backend).
 
 ## Run app live 
 
-Visit: []()
+Visit: [https://josefinelofgren.github.io/diskrid/](https://josefinelofgren.github.io/diskrid/)
 
 
 ## Install project 
