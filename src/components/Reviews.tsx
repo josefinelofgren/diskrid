@@ -60,7 +60,6 @@ function Reviews() {
                 setReviews(data.reviews);
             });
             return result;
-            console.log(result)
   }
 
   useEffect(() => {
