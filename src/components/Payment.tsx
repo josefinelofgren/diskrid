@@ -78,7 +78,7 @@ const Payment = (props: Props) => {
         console.log(result)
 
         // naviagate to users subscription
-        history.push('/account/subscription');
+        history.push('/diskrid/account/subscription');
 
         // current user to localStorage
         localStorage.setItem('currentUser', JSON.stringify(result));
