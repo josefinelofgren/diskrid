@@ -49,15 +49,15 @@ function App() {
 
   const handleColorChoice = (colorChoice: string) => {
     setColorChoice(colorChoice);
-    history.push('/step-2');
+    history.push('/diskrid/step-2');
   }
   const handleQuantityChoice = (quantityChoice: number) => {
     setQuantity(quantityChoice);
-    history.push('/step-3');
+    history.push('/diskrid/step-3');
   }
   const handleDeliveryChoice = (deliveryChoice: string) => {
     setDelivery(deliveryChoice);
-    history.push('/step-4');
+    history.push('/diskrid/step-4');
   }
   const handlePurchaseSubmit = (purchase: IPurchase) => {
     setCurrentSubscription(purchase);
@@ -72,7 +72,7 @@ function App() {
     // if current user exist in localStorage, direct to account/subscription
     // if not, direct to startpage
     if (localStorage.getItem('currentUser') !== null) {
-      history.push('/account/subscription')
+      history.push('/diskrid/account/subscription')
       setUser(true);
     }
   },[history])
@@ -84,7 +84,7 @@ function App() {
               user={user}
               setUser={setUser}/> 
           <Switch>
-              <Route exact path='/:step?'>
+              <Route exact path='/diskrid/:step?'>
                   <Header /> 
                   <ScrollToTop smooth top={200} component={<ArrowSVG />} />
                       <Switch>
