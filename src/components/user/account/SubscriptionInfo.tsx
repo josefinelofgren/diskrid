@@ -27,6 +27,8 @@ interface IUser {
 
 function SubscriptionInfo(props: Props) {
 
+  const history = useHistory();
+  
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
   const [nextDelivery, setNextDelivery] = useState<string>("");
 

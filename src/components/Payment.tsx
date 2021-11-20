@@ -19,7 +19,6 @@ interface Props {
 
 const Payment = (props: Props) => {
 
-    const loggedInUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     
     const history = useHistory();
 
@@ -82,6 +81,7 @@ const Payment = (props: Props) => {
 
         // current user to localStorage
         localStorage.setItem('currentUser', JSON.stringify(result));
+        
         JSON.parse(localStorage.getItem('currentUser') || '{}');
       
     })
