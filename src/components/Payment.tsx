@@ -78,7 +78,7 @@ const Payment = (props: Props) => {
         console.log(result)
 
         // naviagate to users subscription
-        history.push('/account/subscription');
+        history.push('/diskrid/account/subscription');
 
         // current user to localStorage
         localStorage.setItem('currentUser', JSON.stringify(result));
@@ -91,7 +91,7 @@ const Payment = (props: Props) => {
     return (
         <div className="payment">
             <article className="payment-info">
-                <h4 className="page-indicator">STEG 4/4</h4>
+                <h1 className="page-indicator">STEG 4/4</h1>
                 <StepIndicator selectedPage="Checka ut"/>
                 <h2>Checka ut din beställning</h2>
             </article>

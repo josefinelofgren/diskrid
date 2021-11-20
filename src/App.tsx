@@ -49,15 +49,15 @@ function App() {
 
   const handleColorChoice = (colorChoice: string) => {
     setColorChoice(colorChoice);
-    history.push('/step-2');
+    history.push('/diskrid/step-2');
   }
   const handleQuantityChoice = (quantityChoice: number) => {
     setQuantity(quantityChoice);
-    history.push('/step-3');
+    history.push('/diskrid/step-3');
   }
   const handleDeliveryChoice = (deliveryChoice: string) => {
     setDelivery(deliveryChoice);
-    history.push('/step-4');
+    history.push('/diskrid/step-4');
   }
   const handlePurchaseSubmit = (purchase: IPurchase) => {
     setCurrentSubscription(purchase);
@@ -72,7 +72,7 @@ function App() {
     // if current user exist in localStorage, direct to account/subscription
     // if not, direct to startpage
     if (localStorage.getItem('currentUser') !== null) {
-      history.push('/account/subscription')
+      history.push('/diskrid/account/subscription')
       setUser(true);
     }
   },[history])
@@ -84,33 +84,33 @@ function App() {
               user={user}
               setUser={setUser}/> 
           <Switch>
-              <Route exact path='/:step?'>
+              <Route exact path='/diskrid/:step?'>
                   <Header /> 
                   <ScrollToTop smooth top={200} component={<ArrowSVG />} />
                       <Switch>
-                          <Route exact path='/'>
+                          <Route exact path='/diskrid/'>
                             <PickColor colorChoice={handleColorChoice}/>
                           </Route>
-                          <Route exact path='/step-1'>
+                          <Route exact path='/diskrid/step-1'>
                             <PickColor colorChoice={handleColorChoice}/>
                           </Route>
-                          <Route path='/step-2'>
+                          <Route path='/diskrid/step-2'>
                               <PickQuantity quantity={quantity} handleQuantityChoice={handleQuantityChoice}/>
                           </Route>
-                          <Route path='/step-3'>
+                          <Route path='/diskrid/step-3'>
                               <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
                           </Route>
-                          <Route path='/step-4'>
+                          <Route path='/diskrid/step-4'>
                               <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser} handleNewAccount={handleNewAccount}/>
                           </Route>
                       </Switch>
                   <HowItWorks />
                   <Mission />
-                  {/* <Reviews /> */}
                   <AboutUs />
+                  {/* <Reviews /> */}
               </Route>
               <Route
-                  path='/account/subscription'>
+                  path='/diskrid/account/subscription'>
                   <div className='subscription'>
                       <SubscriptionInfo subscriptionStatus={subscriptionStatus} newAccount={newAccount}/> 
                   </div>

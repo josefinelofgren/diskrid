@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,10 +18,6 @@ overflow-x: hidden;
   box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 ul {
   padding: 0 !important;
@@ -54,10 +50,22 @@ label {
   color: rgb(77, 76, 76);
 }
 
+h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 30px !important;
+  font-weight: 600 !important;
+}
+
+h2 {
+  font-size: 20px !important;
+  margin: 20px 0 !important;
+}
+
 h3 {
   text-transform: uppercase;
-  font-size: 15px !important;
+  font-size: 14px !important;
   color: rgb(77, 76, 76);
+  margin-bottom: 20px !important;
 }
 
 .navigate-back {
@@ -137,10 +145,19 @@ input {
   padding: 0 20px;
 }
 
+.navbar-brand {
+  margin: 0 !important;
+  position: relative !important;
+  margin-left: 80px !important;
+  font-family: 'Quicksand', sans-serif;
+}
+
+
 .navbar-icons span {
   font-size: 20px;
-  margin-left: 30px;
+  margin-left: 40px;
   cursor: pointer;
+  display: inline-block;
  }
 
 
@@ -171,34 +188,36 @@ input {
 /* HEADER */ 
 
 .header {
-  height: Calc(100vh - 60px);
+  height: auto !important;
+  min-height: 400px !important;
+  padding: 15vh 0;
   background-color: grey; 
   background-image: url('../images/disktrasa2.jpg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100vw;
 }
 
 .header-content {
   width: 100%;
+  height: 100% !important;
   text-align: center;
-  position: relative;
-  top: 30vh;
+  position: relative; 
+  padding: 15vh 0;
 }
 
 .header .title {
   color: #fff;
   margin-bottom: 40px;
-  font-size: 50px;
+  font-size: 50px !important;
 }
 
 /* HOW IT WORKS */
 
 .how-it-works {
-  min-height: 100vh;
-  background-color: #f8f7f7;
+  min-height: auto;
+  background-color: #f5f3ef;
 }
 
 .how-it-works-content {
@@ -232,7 +251,7 @@ input {
 
 
 .circle {
-  background-color: #333;
+  background-color: #B4A391;
   width: 40px;
   height: 40px;
   padding: 8px;
@@ -406,7 +425,7 @@ input {
 }
 
 .mission .row {
-  min-height: 500px;
+  min-height: 400px;
 }
 
 .mission-content {
@@ -418,8 +437,10 @@ input {
 .mission-content.left {
   position: relative;
   top: 50px;
-  padding-bottom: 150px;
+  padding-bottom: 90px;
 }
+
+
 
 .mission-content.right {
   width: 100%;
@@ -430,16 +451,11 @@ input {
   background-repeat: no-repeat;
 }
 
-@media only screen and (min-width: 780px) {
 
-  .mission-left {
-    width: 50vw;
-  } 
-
-  .mission-right {
-    width: 50vw;
+@media only screen and (max-width: 768px) {
+  .mission-content.left {
+    padding-bottom: 150px;
   }
-
 }
 
 .mission-title {
@@ -454,9 +470,10 @@ input {
 
 
 /* PICK COLOR */
-.pick-color{
-  min-height: 100vh;
-  padding: 15vh 0;
+.pick-color {
+  background-color: #fff;
+  height: auto !important;
+  min-height: 100vh !important;
 }
 
 .pick-color-content{
@@ -465,7 +482,10 @@ input {
   align-items: center;
   flex-direction: column;
   height: 100%;
+  position: relative;
+  padding: 15vh 0;
 }
+
 .rag-attributes{
   display: flex;
   width: 50%;
@@ -506,7 +526,7 @@ input {
 
 .about-us {
   height: auto;
-  padding: 50px 0;
+  padding: 15vh 0;
 }
 
 .about-us-content {
@@ -522,13 +542,14 @@ input {
 /* PICK QUANTITY */
 
 .quantity {
+  height: auto !important;
   min-height: 100vh;
 }
 
 .quantity-content {
   width: 100%;
   min-height: 100%;
-  padding: 50px 0;
+  padding: 15vh 0;
   text-align: center;
   position: relative;
 }
@@ -900,7 +921,7 @@ input {
 /* REVIEWS */ 
 
 .reviews {
-  background-color: #f1f1f1;
+  background-color: #f5f3ef;
   padding: 50px 0;
 }
 
@@ -926,6 +947,11 @@ input {
 .review-content .name {
   color: grey;
   font-size: 12px;
+}
+
+.review {
+  max-height: 200px;
+  overflow: scroll;
 }
 
 
@@ -994,6 +1020,7 @@ input {
   padding: 2%;
   min-height: 40vh;
   justify-content: center;
+  margin-top: 20px;
 }
 .payment-choose-payment {
   display: flex;

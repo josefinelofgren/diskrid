@@ -39,7 +39,7 @@ const PickQuantity = (props: Props) => {
     <div className='quantity'>
         <Container fluid>
           <div className='quantity-content'>
-          <h2 className="page-indicator">STEG 2/4</h2>
+          <h1 className="page-indicator">STEG 2/4</h1>
           <StepIndicator selectedPage="Välj antal"/>
             <h2>Hur många disktrasor vill du ha i din leverans?</h2>
             <section className="quantity-circles">{quantityValues.map(value => {

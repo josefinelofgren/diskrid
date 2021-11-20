@@ -2,7 +2,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import NextDeliveryInfo from './NextDeliveryInfo';
-
+import { useHistory } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 
 // inloggad användare kan se sin prenumeration
@@ -239,9 +239,9 @@ function SubscriptionInfo(props: Props) {
             <p className='mb-4 mt-4'>Du har ingen prenumeration...än. Är du redo för att underlätta din vardag med hjälp av oss?<br/><br/> 
                Med en prenumeration kommer vi att leverera nya, fräscha disktrasor direkt hem till din dörr, så ofta du vill och så många du vill. No strings attached - gör slut eller pausa din leverans när du vill!<br/><br/>
                Kom igång med din prenumeration genom 3 enkla steg, välj färg {'>'} välj antal {'>'} välj hur ofta.</p>
-            <Button className='mb-2 btn-transparent'>Kom igång</Button><br/> 
-            <Button className='mb-2 btn-transparent'>Våra produkter</Button><br/> 
-            <Button className='mb-2 btn-transparent'>Så fungerar det</Button><br/> 
+            <Button className='mb-2 btn-transparent' onClick={() => history.push('/diskrid/step-1')}>Kom igång</Button><br/> 
+            {/* <Button className='mb-2 btn-transparent'>Våra produkter</Button><br/> 
+            <Button className='mb-2 btn-transparent'>Så fungerar det</Button><br/>  */}
             </>
           )}
       </Container>
