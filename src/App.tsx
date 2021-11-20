@@ -25,12 +25,12 @@ import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import Payment from './components/Payment';
 
 interface ISubscription {
-  creationDate: Object,
+  creationDate: Date,
   color: string,
   quantity: string,
   delivery: string
 }
-interface IPurchase {
+interface IUser {
   email: string,
   subscriptionStatus: boolean,
   subscription: ISubscription
@@ -44,8 +44,9 @@ function App() {
   const[quantity, setQuantity] = useState<number>(0);
   const[delivery, setDelivery] = useState("");
   const[colorChoice, setColorChoice] = useState("");
-  const[currentSubscription, setCurrentSubscription] = useState({});
+  const[currentSubscription, setCurrentSubscription] = useState<IUser|undefined>(undefined);
   const[newAccount, setNewAccount] = useState<string|undefined>(undefined);
+  const[fetchDone, setFetchDone] = useState<boolean>(false);
 
   const handleColorChoice = (colorChoice: string) => {
     setColorChoice(colorChoice);
@@ -59,21 +60,30 @@ function App() {
     setDelivery(deliveryChoice);
     history.push('/diskrid/step-4');
   }
-  const handlePurchaseSubmit = (purchase: IPurchase) => {
-    setCurrentSubscription(purchase);
-  }
+  
   const handleNewAccount = (account: string) => {
     setNewAccount(account);
   }
-  // LOCAL STORAGE FOR CURRENT USER
-  let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-
+  
   useEffect(() => {
     // if current user exist in localStorage, direct to account/subscription
     // if not, direct to startpage
     if (localStorage.getItem('currentUser') !== null) {
-      history.push('/diskrid/account/subscription')
-      setUser(true);
+      fetch('http://localhost:4000/users/log-in/pageload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: localStorage.getItem('currentUser')
+      })
+      .then(response => response.json())
+      .then(data => {
+        JSON.stringify(localStorage.setItem('currentUser', JSON.stringify(data)))
+        setCurrentSubscription(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+        setFetchDone(true);
+        history.push('/diskrid/account/subscription')
+        setUser(true);
+      })
     }
   },[history])
   
@@ -101,7 +111,7 @@ function App() {
                               <PickDelivery delivery={delivery} handleDeliveryChoice={handleDeliveryChoice}/>
                           </Route>
                           <Route path='/diskrid/step-4'>
-                              <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser} handleNewAccount={handleNewAccount}/>
+                              <Payment colorChoice={colorChoice} delivery={delivery} quantity={quantity} user={user} setUser={setUser} handleNewAccount={handleNewAccount} setCurrentSubscription={setCurrentSubscription}/>
                           </Route>
                       </Switch>
                   <HowItWorks />
@@ -112,7 +122,7 @@ function App() {
               <Route
                   path='/diskrid/account/subscription'>
                   <div className='subscription'>
-                      <SubscriptionInfo subscriptionStatus={subscriptionStatus} newAccount={newAccount}/> 
+                      <SubscriptionInfo subscriptionStatus={subscriptionStatus} newAccount={newAccount} currentSubscription={currentSubscription} setCurrentSubscription={setCurrentSubscription} fetchDone={fetchDone}/> 
                   </div>
               </Route>
           </Switch>

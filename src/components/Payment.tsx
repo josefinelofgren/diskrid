@@ -7,14 +7,26 @@ import {useHistory} from 'react-router-dom';
 const generator = require('generate-password');
 
 
-
+interface ISubscription {
+    creationDate: Date,
+    color: string,
+    quantity: string,
+    delivery: string
+  }
+  interface IPurchase {
+    email: string,
+    subscriptionStatus: boolean,
+    subscription: ISubscription
+  }
+  
 interface Props {
     colorChoice: string,
     quantity: number,
     delivery: string
     user: string|null,
     setUser: any,
-    handleNewAccount: (account: string) => void
+    handleNewAccount: (account: string) => void,
+    setCurrentSubscription: (subscription: IPurchase|undefined) => void,
 }
 
 const Payment = (props: Props) => {
@@ -81,7 +93,7 @@ const Payment = (props: Props) => {
 
         // current user to localStorage
         localStorage.setItem('currentUser', JSON.stringify(result));
-        
+        props.setCurrentSubscription(result);
         JSON.parse(localStorage.getItem('currentUser') || '{}');
       
     })

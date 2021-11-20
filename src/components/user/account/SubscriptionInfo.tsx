@@ -8,11 +8,14 @@ import { Container, Button } from 'react-bootstrap';
 // inloggad användare kan se sin prenumeration
 interface Props {
   subscriptionStatus: boolean,
-  newAccount: string|undefined
+  newAccount: string|undefined,
+  currentSubscription: IUser|undefined
+  setCurrentSubscription: (subscription: IUser) => void,
+  fetchDone: boolean
 }
 
 interface ISubscription {
-  creationDate: string,
+  creationDate: Date,
   color: string,
   quantity: string,
   delivery: string
@@ -24,22 +27,22 @@ interface IUser {
   subscription: ISubscription
 }
 
-
 function SubscriptionInfo(props: Props) {
 
   const history = useHistory();
   
-  const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
-  const [nextDelivery, setNextDelivery] = useState<string>("");
+  // const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
+  const [currentCreationDate, setCurrentCreationDate] = useState<Date|undefined>(undefined);
+  const [nextDelivery, setNextDelivery] = useState<string|undefined>("");
 
-  useEffect(() => {
-    //This needs to not be taken from localstorage, but from state in app. Works for demo purposes but breaks in production.
-    setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
-  }, [])
+  // useEffect(() => {
+  //   //This needs to not be taken from localstorage, but from state in app. Works for demo purposes but breaks in production.
+  //   setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+  // }, [])
   
   //Converts delivery choice to number of days. Note that 61 is an approximation and won't always be correct. But works for MVP purposes.
   const convertDeliveryToNum = () => {
-    switch(subscriptionDetails?.subscription.delivery) {
+    switch(props.currentSubscription?.subscription.delivery) {
       case("Varje vecka"):
         return 7;
       case("Varannan vecka"):
@@ -52,20 +55,33 @@ function SubscriptionInfo(props: Props) {
   }
 
   const calculateDelivery = (deliveryNum:number) => {
-    const currentDeliveryDate:string|number|Date = subscriptionDetails!.subscription.creationDate;
-    let calculatedNextDelivery = new Date(currentDeliveryDate);
-    calculatedNextDelivery.setDate(calculatedNextDelivery.getDate() + deliveryNum);
+    // props.currentSubscription!.subscription.creationDate;
+    // const currentDeliveryDate:Date = currentCreationDate;
+    let calculatedNextDelivery:Date = new Date();
+    if(currentCreationDate){
+      calculatedNextDelivery = new Date(currentCreationDate);
+      calculatedNextDelivery.setDate(calculatedNextDelivery.getDate() + deliveryNum);
+    }
     return calculatedNextDelivery;
+    // return;
   }
   useEffect(() => {
-    if(subscriptionDetails){
+    console.log("updated Creation!");
+    
+    // if(currentCreationDate){
       let deliveryInterval:number = convertDeliveryToNum();
       const deliveryDate: Date = calculateDelivery(deliveryInterval);
+      console.log(deliveryDate);
+      
       setNextDelivery(deliveryDate.toLocaleDateString());
-    }
+    // }
     
     
-  }, [subscriptionDetails])
+  }, [currentCreationDate])
+  
+  useEffect(() => {
+    setCurrentCreationDate(props.currentSubscription?.subscription.creationDate);
+  }, [props.fetchDone])
 
   
 
@@ -77,9 +93,9 @@ function SubscriptionInfo(props: Props) {
     e.preventDefault();
     console.log("End subscription")
 
-    if(subscriptionDetails){
+    if(props.currentSubscription){
     let updateSubscription = {
-      email: subscriptionDetails.email,
+      email: props.currentSubscription.email,
       subscriptionStatus: false,
       subscription: {},
 
@@ -100,9 +116,10 @@ function SubscriptionInfo(props: Props) {
       .then(result => {
 
       // current user to localStorage
-      localStorage.setItem('currentUser', JSON.stringify(result));
-      JSON.parse(localStorage.getItem('currentUser') || '{}');
-      setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+      // localStorage.setItem('currentUser', JSON.stringify(result));
+      // JSON.parse(localStorage.getItem('currentUser') || '{}');
+      // setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+      props.setCurrentSubscription(result);
       })
     }
   }
@@ -122,15 +139,15 @@ function SubscriptionInfo(props: Props) {
 
     const date = new Date();
 
-    if(subscriptionDetails){
+    if(props.currentSubscription){
     let updateSubscription = {
-      email: subscriptionDetails.email,
-      subscriptionStatus: subscriptionDetails.subscriptionStatus,
+      email: props.currentSubscription.email,
+      subscriptionStatus: props.currentSubscription.subscriptionStatus,
       subscription: {
         creationDate: date,
-        color: subscriptionDetails.subscription.color,
-        quantity: subscriptionDetails.subscription.quantity,
-        delivery: subscriptionDetails.subscription.delivery,
+        color: props.currentSubscription.subscription.color,
+        quantity: props.currentSubscription.subscription.quantity,
+        delivery: props.currentSubscription.subscription.delivery,
       },
     }
     console.log(updateSubscription);
@@ -148,9 +165,10 @@ function SubscriptionInfo(props: Props) {
     .then(result => {
 
     // current user to localStorage
-    localStorage.setItem('currentUser', JSON.stringify(result));
-    JSON.parse(localStorage.getItem('currentUser') || '{}');
-    setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+    // localStorage.setItem('currentUser', JSON.stringify(result));
+    // JSON.parse(localStorage.getItem('currentUser') || '{}');
+    // setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+    props.setCurrentSubscription(result);
     })
   }
   }
@@ -158,29 +176,39 @@ function SubscriptionInfo(props: Props) {
   const skipNextDelivery = () => {
     const nextDelivery:number = convertDeliveryToNum();
     const nextDeliveryDate:Date = calculateDelivery(nextDelivery);
+    console.log(nextDeliveryDate);
     
+    let updatedSubscription = {
+      email: props.currentSubscription!.email,
+      subscriptionStatus: props.currentSubscription!.subscriptionStatus,
+      subscription: {
+        creationDate: nextDeliveryDate,
+        color: props.currentSubscription!.subscription.color,
+        quantity: props.currentSubscription!.subscription.quantity,
+        delivery: props.currentSubscription!.subscription.delivery,
+      }
+    }
     fetch("http://localhost:4000/users/skip", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({email: subscriptionDetails!.email, creationDate: nextDeliveryDate})
+      body: JSON.stringify(updatedSubscription)
     })
     .then(response => response.json())
     .then(data => {
       //This is a bad way of doing it, since it's not updating the state, but overwriting it. This state structure is quite bad and should be changed: nested objects are to be avoided.
-      let updateSubscription = {
-        email: subscriptionDetails!.email,
-        subscriptionStatus: subscriptionDetails!.subscriptionStatus,
-        subscription: {
-          creationDate: data,
-          color: subscriptionDetails!.subscription.color,
-          quantity: subscriptionDetails!.subscription.quantity,
-          delivery: subscriptionDetails!.subscription.delivery,
-        }
-      }
-      localStorage.setItem('currentUser', JSON.stringify(subscriptionDetails));
-      setSubscriptionDetails(updateSubscription);
+      // updatedSubscription.subscription = data;
+      // localStorage.setItem('currentUser', JSON.stringify(props.currentSubscription));
+      // setSubscriptionDetails(updateSubscription);
+      props.setCurrentSubscription(updatedSubscription);
+      const dataCreation = data.subscription.creationDate;
+      console.log(dataCreation);
+      
+      setCurrentCreationDate(dataCreation);
+      console.log(data);
+      
+      // console.log(props.currentSubscription);
       
     })
   }
@@ -189,7 +217,7 @@ function SubscriptionInfo(props: Props) {
     <>
     <div className='subscription-info'>
       <Container fluid>
-          {subscriptionDetails?.subscriptionStatus && (
+          {props.currentSubscription?.subscriptionStatus && (
             <>
             {subscription && (
               <div className='subscription-status is-active fw-bold'>
@@ -208,7 +236,7 @@ function SubscriptionInfo(props: Props) {
               : null}
             <h3 className='fw-bold mt-4'>Nästa order skickas</h3>
             <h1 className='fw-bold'>{nextDelivery}</h1>
-            <p className='mb-4'>Leverans alt: <span className='fw-bold'>{subscriptionDetails.subscription.delivery}</span></p>
+            <p className='mb-4'>Leverans alt: <span className='fw-bold'>{props.currentSubscription.subscription.delivery}</span></p>
             </>
             )}
             {!subscription && (
@@ -232,7 +260,7 @@ function SubscriptionInfo(props: Props) {
             <Button onClick={e => endSubscription(e)} className='mb-2 btn-transparent'>Avsluta prenumeration</Button>
             </>
           )}
-          {!subscriptionDetails?.subscriptionStatus && (
+          {!props.currentSubscription?.subscriptionStatus && (
             <>
             <div className='subscription-status fw-bold'>
                 Ej aktiv
@@ -248,7 +276,7 @@ function SubscriptionInfo(props: Props) {
           )}
       </Container>
     </div>
-    {subscriptionDetails?.subscriptionStatus && (
+    {props.currentSubscription?.subscriptionStatus && (
     <NextDeliveryInfo /> 
     )}
     </>
