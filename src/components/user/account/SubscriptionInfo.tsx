@@ -30,34 +30,36 @@ function SubscriptionInfo(props: Props) {
   const [subscriptionDetails, setSubscriptionDetails] = useState<IUser|undefined>();
   const [nextDelivery, setNextDelivery] = useState<string>("");
 
-  let month = undefined;
-  const deliveryOptions: number[] = [7, 14, 61];
-  let history = useHistory();
-
   useEffect(() => {
+    //This needs to not be taken from localstorage, but from state in app. Works for demo purposes but breaks in production.
     setSubscriptionDetails(JSON.parse(localStorage.getItem('currentUser') || '{}'));
   }, [])
   
+  //Converts delivery choice to number of days. Note that 61 is an approximation and won't always be correct. But works for MVP purposes.
+  const convertDeliveryToNum = () => {
+    switch(subscriptionDetails?.subscription.delivery) {
+      case("Varje vecka"):
+        return 7;
+      case("Varannan vecka"):
+        return 14;
+      case("Varannan månad"):
+        return 61;
+      default:
+        return 0;
+    }
+  }
+
+  const calculateDelivery = (deliveryNum:number) => {
+    const currentDeliveryDate:string|number|Date = subscriptionDetails!.subscription.creationDate;
+    let calculatedNextDelivery = new Date(currentDeliveryDate);
+    calculatedNextDelivery.setDate(calculatedNextDelivery.getDate() + deliveryNum);
+    return calculatedNextDelivery;
+  }
   useEffect(() => {
     if(subscriptionDetails){
-      const date: any = subscriptionDetails?.subscription.creationDate;
-      let deliveryInterval:number = 0;
-
-      //Converts delivery choice to number of days. Note that 61 is an approximation and won't always be correct. But works for MVP purposes.
-      switch(subscriptionDetails?.subscription.delivery) {
-        case("Varje vecka"):
-          deliveryInterval = 7;
-          break;
-        case("Varannan vecka"):
-          deliveryInterval = 14;
-          break;
-        case("Varannan månad"):
-          deliveryInterval = 61;
-          break;
-      }
-      let calculatedNextDelivery = new Date();
-      calculatedNextDelivery.setDate(calculatedNextDelivery.getDate() + deliveryInterval);
-      setNextDelivery(calculatedNextDelivery.toLocaleDateString());
+      let deliveryInterval:number = convertDeliveryToNum();
+      const deliveryDate: Date = calculateDelivery(deliveryInterval);
+      setNextDelivery(deliveryDate.toLocaleDateString());
     }
     
     
@@ -151,6 +153,35 @@ function SubscriptionInfo(props: Props) {
   }
   }
   
+  const skipNextDelivery = () => {
+    const nextDelivery:number = convertDeliveryToNum();
+    const nextDeliveryDate:Date = calculateDelivery(nextDelivery);
+    
+    fetch("http://localhost:4000/users/skip", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({email: subscriptionDetails!.email, creationDate: nextDeliveryDate})
+    })
+    .then(response => response.json())
+    .then(data => {
+      //This is a bad way of doing it, since it's not updating the state, but overwriting it. This state structure is quite bad and should be changed: nested objects are to be avoided.
+      let updateSubscription = {
+        email: subscriptionDetails!.email,
+        subscriptionStatus: subscriptionDetails!.subscriptionStatus,
+        subscription: {
+          creationDate: data,
+          color: subscriptionDetails!.subscription.color,
+          quantity: subscriptionDetails!.subscription.quantity,
+          delivery: subscriptionDetails!.subscription.delivery,
+        }
+      }
+      localStorage.setItem('currentUser', JSON.stringify(subscriptionDetails));
+      setSubscriptionDetails(updateSubscription);
+      
+    })
+  }
 
   return (
     <>
@@ -188,7 +219,7 @@ function SubscriptionInfo(props: Props) {
             <Button className='mb-2 btn-transparent'>Ändra prenumeration</Button><br/>
             {subscription && (
               <>
-                <Button className='mb-2 btn-transparent'>Hoppa över nästa leverans</Button><br/> 
+                <Button className='mb-2 btn-transparent' onClick={skipNextDelivery}>Hoppa över nästa leverans</Button><br/> 
                 <Button onClick={e => pauseSubscription(e)} className='mb-2 btn-transparent'>Pausa prenumeration</Button>
               </>
             )}
