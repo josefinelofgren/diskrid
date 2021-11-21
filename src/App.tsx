@@ -119,7 +119,7 @@ function App() {
                   <HowItWorks />
                   <Mission />
                   <AboutUs />
-                  {/* <Reviews /> */}
+                  <Reviews />
               </Route>
               <Route
                   path='/diskrid/account/subscription'>
