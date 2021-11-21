@@ -136,7 +136,7 @@ function SubscriptionInfo(props: Props) {
     console.log(updateSubscription);
 
     // fetch data from db
-    fetch("http://localhost:4000/users/update-subscription", {
+    fetch("https://diskrid-backend.herokuapp.com/users/update-subscription", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -159,7 +159,7 @@ function SubscriptionInfo(props: Props) {
     const nextDelivery:number = convertDeliveryToNum();
     const nextDeliveryDate:Date = calculateDelivery(nextDelivery);
     
-    fetch("http://localhost:4000/users/skip", {
+    fetch("https://diskrid-backend.herokuapp.com/users/skip", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
