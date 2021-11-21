@@ -65,9 +65,8 @@ function Reviews() {
   useEffect(() => {
        (async function (){
            await callAPI();
-           console.log(reviews)
        })();
-   }, []);
+   },[setReviews]);
 
 
   return (
