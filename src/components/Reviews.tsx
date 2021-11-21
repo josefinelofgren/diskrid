@@ -53,7 +53,7 @@ function Reviews() {
   const handleError = useErrorHandler();
 
   const callAPI = () => {
-      const result = fetch('https://app.reviewapi.io/api/v1/reviews?apikey=4f66f620-4aac-11ec-ba71-cd49fe4dff49&url=https%3A%2F%2Fwww.trustpilot.com%2Freview%2Festrid.com&amount=8')
+      const result = fetch('https://app.reviewapi.io/api/v1/reviews?apikey=998b8760-4ae5-11ec-b4af-594facebe6e6&url=https%3A%2F%2Fwww.trustpilot.com%2Freview%2Festrid.com&amount=8')
       .then((response) => response.json(),
             (error) => handleError(error))
             .then((data) => {
@@ -71,26 +71,28 @@ function Reviews() {
 
   return (
     <div className='reviews'>
-    <Slider {...settings}>
-         {reviews.map((review:any, i:number) => (
-           <div className='review-content' key={i}>
-           <div className='grid'>
-               <div className='stars'>
-                   Betyg: <span className='fw-bold'>{review.rating}</span>
-               </div>
-               <div className='date right'>
-                   {review.timestamp}
-               </div>
-           </div>
-           <div className='review'>
-               {review.text}
-           </div>
-           <div className='name'>
-               {review.user_name}
-           </div>
-       </div>
-         ))}
-    </Slider>
+    {reviews !== undefined && (
+      <Slider {...settings}>
+      {reviews.map((review:any, i:number) => (
+        <div className='review-content' key={i}>
+        <div className='grid'>
+            <div className='stars'>
+                Betyg: <span className='fw-bold'>{review.rating}</span>
+            </div>
+            <div className='date right'>
+                {review.timestamp}
+            </div>
+        </div>
+        <div className='review'>
+            {review.text}
+        </div>
+        <div className='name'>
+            {review.user_name}
+        </div>
+    </div>
+      ))}
+ </Slider>
+    )}
     </div>
   );
 }
