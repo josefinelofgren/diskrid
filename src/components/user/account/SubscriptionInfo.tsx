@@ -32,8 +32,9 @@ interface IUser {
 
 function SubscriptionInfo(props: Props) {
 
+
   const history = useHistory();
-  
+
   const [currentCreationDate, setCurrentCreationDate] = useState<Date|undefined>(undefined);
   const [nextDelivery, setNextDelivery] = useState<string|undefined>("");
   const[subscription, setSubscription] = useState(true);
@@ -85,7 +86,9 @@ function SubscriptionInfo(props: Props) {
       subscription: {},
     }
       // fetch data from db
+
        fetch(update_URI, {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +129,9 @@ function SubscriptionInfo(props: Props) {
     }
 
     // fetch data from db
+
     fetch(update_URI, {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -145,6 +150,7 @@ function SubscriptionInfo(props: Props) {
     const nextDelivery:number = convertDeliveryToNum();
     const nextDeliveryDate:Date = calculateDelivery(nextDelivery);
     
+
     let updatedSubscription = {
       email: props.currentSubscription!.email,
       subscriptionStatus: props.currentSubscription!.subscriptionStatus,
@@ -156,6 +162,7 @@ function SubscriptionInfo(props: Props) {
       }
     }
     fetch(skip_URI, {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json"

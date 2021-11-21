@@ -35,7 +35,9 @@ function LoginDropDown(props: Props) {
     };
 
     // fetch data from db 
+
     fetch(login_URI, {
+
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -50,7 +50,9 @@ function SignUpDropDown(props: Props) {
     };
 
     // fetch data from db
+
     fetch(create_URI, {
+
         method: "POST",
         headers:{
             "Content-Type": "application/json", 

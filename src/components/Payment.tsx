@@ -63,7 +63,9 @@ const Payment = (props: Props) => {
           });
         
         props.handleNewAccount(details.email);
+
         fetch(submit_URI, {
+
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -79,7 +81,9 @@ const Payment = (props: Props) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
+
             fetch(login_URI, {
+
         method: "POST",
         headers: {
             "Content-Type": "application/json",

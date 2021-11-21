@@ -53,7 +53,7 @@ function Reviews() {
   const handleError = useErrorHandler();
 
   const callAPI = () => {
-      const result = fetch('https://app.reviewapi.io/api/v1/reviews?apikey=296c46e0-491d-11ec-8ad2-090a7e801a22&url=https%3A%2F%2Fwww.trustpilot.com%2Freview%2Festrid.com&amount=15')
+      const result = fetch('https://app.reviewapi.io/api/v1/reviews?apikey=4f66f620-4aac-11ec-ba71-cd49fe4dff49&url=https%3A%2F%2Fwww.trustpilot.com%2Freview%2Festrid.com&amount=8')
       .then((response) => response.json(),
             (error) => handleError(error))
             .then((data) => {
@@ -66,7 +66,7 @@ function Reviews() {
        (async function (){
            await callAPI();
        })();
-   }, []);
+   },[setReviews]);
 
 
   return (
