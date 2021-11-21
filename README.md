@@ -16,6 +16,7 @@ Visit: [https://josefinelofgren.github.io/diskrid/](https://josefinelofgren.gith
 ReviewAPI - https://app.reviewapi.io/
 
 ### Packages
+- create-react-app
 - react-router-dom
 - react-dom
 - react-bootstrap
