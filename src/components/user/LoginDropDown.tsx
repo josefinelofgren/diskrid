@@ -35,7 +35,7 @@ function LoginDropDown(props: Props) {
     };
 
     // fetch data from db 
-    fetch("http://localhost:4000/users/log-in", {
+    fetch("https://diskrid-backend.herokuapp.com/users/log-in", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

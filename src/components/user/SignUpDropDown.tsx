@@ -50,7 +50,7 @@ function SignUpDropDown(props: Props) {
     console.log(newUser);
 
     // fetch data from db
-    fetch("http://localhost:4000/users/sign-up", {
+    fetch("https://diskrid-backend.herokuapp.com/users/sign-up", {
         method: "POST",
         headers:{
             "Content-Type": "application/json", 

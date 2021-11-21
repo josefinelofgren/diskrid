@@ -54,8 +54,7 @@ const PickColor = (props: Props) => {
                         return(
                             <div className={`color-img-wrapper`} key={picture.source}>
                                 <div className={`color-hover-div ${pickedColor === picture.color ? "selected-color" : ""}`} onClick={() => setPickedColor(picture.color)}></div>
-                                <img className={`border border-dark rounded-circle color-choice`} src={picture.source}/>
-                                
+                                <img className={`border border-dark rounded-circle color-choice`} src={picture.source} alt="Dishcloth"/>
                             </div>
                         )
                     })}</div>
