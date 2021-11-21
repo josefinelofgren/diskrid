@@ -6,20 +6,35 @@ import { Link } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 const generator = require('generate-password');
 
+// const submit_URI = "http://localhost:4000/users/submit";
+// const login_URI ="http://localhost:4000/users/log-in";
+const submit_URI = "https://diskrid-server.herokuapp.com/users/submit";
+const login_URI = "https://diskrid-server.herokuapp.com/users/log-in";
 
-
+interface ISubscription {
+    creationDate: Date,
+    color: string,
+    quantity: string,
+    delivery: string
+  }
+  interface IPurchase {
+    email: string,
+    subscriptionStatus: boolean,
+    subscription: ISubscription
+  }
+  
 interface Props {
     colorChoice: string,
     quantity: number,
     delivery: string
     user: string|null,
     setUser: any,
-    handleNewAccount: (account: string) => void
+    handleNewAccount: (account: string) => void,
+    setCurrentSubscription: (subscription: IPurchase|undefined) => void,
 }
 
 const Payment = (props: Props) => {
 
-    const loggedInUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     
     const history = useHistory();
 
@@ -48,7 +63,9 @@ const Payment = (props: Props) => {
           });
         
         props.handleNewAccount(details.email);
-        fetch("https://diskrid-server.herokuapp.com/users/submit", {
+
+        fetch(submit_URI, {
+
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -64,7 +81,9 @@ const Payment = (props: Props) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            fetch("https://diskrid-server.herokuapp.com/users/log-in", {
+
+            fetch(login_URI, {
+
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -82,6 +101,7 @@ const Payment = (props: Props) => {
 
         // current user to localStorage
         localStorage.setItem('currentUser', JSON.stringify(result));
+        props.setCurrentSubscription(result);
         JSON.parse(localStorage.getItem('currentUser') || '{}');
       
     })

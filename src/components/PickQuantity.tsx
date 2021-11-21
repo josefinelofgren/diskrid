@@ -16,7 +16,6 @@ const PickQuantity = (props: Props) => {
 
     const handleSubmit = (e:any) => {
       e.preventDefault();
-      console.log("Form submitted with quantity: " + quantity)
     }
 
     const handleChange = (e:any) => {
@@ -28,13 +27,6 @@ const PickQuantity = (props: Props) => {
         }
     }
 
-    // const handleClick = (e:any) => {
-    //     let selectedQuantity = e.target.id;
-    //     console.log("Clicked on circle with quantity: " + selectedQuantity);
-        
-    //     setQuantity(selectedQuantity);
-    // }
-  
   return (
     <div className='quantity'>
         <Container fluid>
@@ -47,9 +39,6 @@ const PickQuantity = (props: Props) => {
                 <div className={`quantity-circle ${value === quantity ? "selected-quantity" : ""}`} onClick={e => setQuantity(value)} key={value}>{value}</div>
               )
             })}
-                {/* <div className={`quantity-circle ${}`} id="1" onClick={e => handleClick(e)}>1</div>
-                <div className="quantity-circle" id="5" onClick={e => handleClick(e)}>5</div>
-                <div className="quantity-circle" id="10" onClick={e => handleClick(e)}>10</div> */}
             </section>
             <section>
                 <p>...eller fyll i valfritt antal:</p>

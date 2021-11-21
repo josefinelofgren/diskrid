@@ -4,12 +4,14 @@ import { Button } from 'react-bootstrap';
 import FormError from '../FormError';
 import { useHistory } from 'react-router-dom';
 
+// const login_URI = "http://localhost:4000/users/log-in";
+const login_URI = "https://diskrid-server.herokuapp.com/users/log-in";
+
 interface Props {
   toggleSignUpContent: any; 
   setUserDropDown: any;
   setUser: any;
 }
-
 
 function LoginDropDown(props: Props) {
 
@@ -24,8 +26,6 @@ function LoginDropDown(props: Props) {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage]: any = useState(null);
 
-  
-
   const handleSubmit = (e:any) => {
     e.preventDefault();
 
@@ -35,7 +35,9 @@ function LoginDropDown(props: Props) {
     };
 
     // fetch data from db 
-    fetch("https://diskrid-server.herokuapp.com/users/log-in", {
+
+    fetch(login_URI, {
+
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -18,7 +18,6 @@ function LogoutDropDown(props: Props) {
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log('Log out and clear local storage');
     localStorage.removeItem('currentUser');
     history.push('/diskrid/');
     setUserDropDown(false);
