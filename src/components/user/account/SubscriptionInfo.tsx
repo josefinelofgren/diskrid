@@ -88,7 +88,7 @@ function SubscriptionInfo(props: Props) {
     console.log(updateSubscription);
 
       // fetch data from db
-       fetch("https://diskrid-backend.herokuapp.com/users/update-subscription", {
+       fetch("https://diskrid-server.herokuapp.com/users/update-subscription", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
