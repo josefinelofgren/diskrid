@@ -48,7 +48,7 @@ const Payment = (props: Props) => {
           });
         
         props.handleNewAccount(details.email);
-        fetch("https://diskrid-backend.herokuapp.com/users/submit", {
+        fetch("https://diskrid-server.herokuapp.com/users/submit", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -64,7 +64,7 @@ const Payment = (props: Props) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            fetch("https://diskrid-backend.herokuapp.com/users/log-in", {
+            fetch("https://diskrid-server.herokuapp.com/users/log-in", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
