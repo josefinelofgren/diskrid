@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import FormError from '../FormError';
 import { useHistory } from 'react-router-dom'; 
 
+// const create_URI = "http://localhost:4000/users/sign-up";
+const create_URI = "https://diskrid-server.herokuapp.com/users/sign-up";
 interface Props {
   toggleLogInContent: any; 
   setUserDropDown: any;
@@ -47,10 +49,8 @@ function SignUpDropDown(props: Props) {
       subscription:{}
     };
 
-    console.log(newUser);
-
     // fetch data from db
-    fetch("http://localhost:4000/users/sign-up", {
+    fetch(create_URI, {
         method: "POST",
         headers:{
             "Content-Type": "application/json", 
@@ -65,7 +65,6 @@ function SignUpDropDown(props: Props) {
       } else {
         setUserDropDown(false);
         setUser(true)
-        console.log(result)
         localStorage.setItem('currentUser', JSON.stringify(result));
         JSON.parse(localStorage.getItem('currentUser') || '{}');
         history.push('/diskrid/account/subscription');

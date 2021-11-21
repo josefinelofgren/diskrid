@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 const generator = require('generate-password');
 
+// const submit_URI = "http://localhost:4000/users/submit";
+// const login_URI ="http://localhost:4000/users/log-in";
+const submit_URI = "https://diskrid-server.herokuapp.com/users/submit";
+const login_URI = "https://diskrid-server.herokuapp.com/users/log-in";
 
 interface ISubscription {
     creationDate: Date,
@@ -59,7 +63,7 @@ const Payment = (props: Props) => {
           });
         
         props.handleNewAccount(details.email);
-        fetch("http://localhost:4000/users/submit", {
+        fetch(submit_URI, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -75,7 +79,7 @@ const Payment = (props: Props) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            fetch("http://localhost:4000/users/log-in", {
+            fetch(login_URI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

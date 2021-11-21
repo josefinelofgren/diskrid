@@ -24,6 +24,8 @@ import Footer from './components/Footer';
 import SubscriptionInfo from './components/user/account/SubscriptionInfo';
 import Payment from './components/Payment';
 
+// const page_load_URI = 'http://localhost:4000/users/log-in/pageload';
+const page_load_URI = 'https://diskrid-server.herokuapp.com/users/log-in/pageload';
 interface ISubscription {
   creationDate: Date,
   color: string,
@@ -69,7 +71,7 @@ function App() {
     // if current user exist in localStorage, direct to account/subscription
     // if not, direct to startpage
     if (localStorage.getItem('currentUser') !== null) {
-      fetch('http://localhost:4000/users/log-in/pageload', {
+      fetch(page_load_URI, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
